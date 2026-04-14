@@ -203,7 +203,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-8xl font-sans font-black leading-[0.9] tracking-tighter uppercase mb-8"
             >
-              TENHA UM PERFIL DE SUCESSO COM <span className="text-accent text-glow-accent">CORTES VIRAIS!</span>
+              ACELERE SUA PRODUÇÃO COM <span className="text-accent text-glow-accent">CORTES TEMÁTICOS!</span>
             </motion.h1>
 
             <motion.p 
@@ -212,7 +212,7 @@ export default function App() {
               transition={{ delay: 0.1 }}
               className="text-lg md:text-2xl text-text-dim max-w-2xl mb-12 font-medium leading-relaxed"
             >
-              Você não precisa aparecer. Só precisa postar. Tenha acesso à maior biblioteca de cortes temáticos do Brasil, com todos os nichos mais quentes do momento.
+              Facilite sua rotina de postagens. Tenha acesso à maior biblioteca de cortes temáticos do Brasil, com todos os nichos mais buscados do momento.
             </motion.p>
 
             <motion.div
@@ -274,8 +274,8 @@ export default function App() {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Atraia seguidores todos os dias com conteúdo de alta retenção.">
-            OS PERFIS QUE MAIS CRESCEM HOJE <span className="text-cyan text-glow-cyan">NÃO MOSTRAM O ROSTO!</span>
+          <SectionTitle subtitle="Conteúdo focado em retenção que pode auxiliar no engajamento do seu perfil.">
+            ESTRATÉGIAS UTILIZADAS POR CRIADORES QUE <span className="text-cyan text-glow-cyan">NÃO MOSTRAM O ROSTO</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -287,7 +287,7 @@ export default function App() {
 
           <div className="mt-16 md:mt-24 text-center">
             <p className="text-xl md:text-3xl font-medium text-gray-400 leading-relaxed max-w-4xl mx-auto px-4">
-              Elas vendem todos os dias nos Stories e na Bio. Tudo isso sem aparecer, apenas postando <span className="text-accent font-black">cortes virais</span> e aplicando estratégias simples de monetização.
+              Muitos criadores utilizam esses conteúdos para estratégias de divulgação nos Stories e na Bio. Tudo isso sem precisar aparecer, utilizando <span className="text-accent font-black">cortes temáticos</span> prontos para facilitar seu processo.
             </p>
           </div>
         </div>
@@ -296,7 +296,7 @@ export default function App() {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Mais de 5.000 vídeos prontos para postar e viralizar.">
+          <SectionTitle subtitle="Mais de 5.000 vídeos prontos para facilitar sua produção de conteúdo.">
             O QUE VOCÊ VAI RECEBER
           </SectionTitle>
           
@@ -347,10 +347,10 @@ export default function App() {
           <SectionTitle>COMO FUNCIONA?</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Crie sua conta", desc: "Configure seu perfil de nicho em minutos." },
-              { icon: <Play className="w-10 h-10" />, title: "Poste os cortes", desc: "Use nossa biblioteca infinita de vídeos virais." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Venda como afiliado", desc: "Monetize sua audiência com produtos certos." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Escale", desc: "Repita o processo e multiplique seus ganhos." }
+              { icon: <Users className="w-10 h-10" />, title: "Crie sua conta", desc: "Configure seu perfil de nicho com facilidade." },
+              { icon: <Play className="w-10 h-10" />, title: "Poste os cortes", desc: "Utilize nossa biblioteca de vídeos prontos para postar." },
+              { icon: <DollarSign className="w-10 h-10" />, title: "Divulgue produtos", desc: "Você pode utilizar estratégias de divulgação como afiliado." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Consistência", desc: "Mantenha a frequência e otimize seu fluxo de trabalho." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -374,7 +374,7 @@ export default function App() {
       {/* --- Testimonials --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/10">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle>QUEM JÁ ESTÁ LUCRANDO</SectionTitle>
+          <SectionTitle>QUEM JÁ UTILIZA O PACKLANDIA</SectionTitle>
           <Carousel images={[
             "https://packlandia.com/wp-content/uploads/2025/09/10-1.jpg.webp",
             "https://packlandia.com/wp-content/uploads/2025/09/9.jpg.webp",
@@ -391,10 +391,10 @@ export default function App() {
           <SectionTitle subtitle="Ao garantir sua vaga hoje, você leva esses bônus exclusivos.">PRESENTES EXCLUSIVOS (BÔNUS)</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Pack Memes", desc: "Mais de 1000 memes para suas edições.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
-              { title: "Efeitos Sonoros", desc: "SFX profissionais para prender a atenção.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
-              { title: "Músicas Sem Copyright", desc: "Trilhas sonoras seguras para monetizar.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo Exclusivo", desc: "Networking com quem já ganha dinheiro." }
+              { title: "Pack Memes", desc: "Mais de 1000 memes para facilitar suas edições.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
+              { title: "Efeitos Sonoros", desc: "SFX profissionais para auxiliar na retenção.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
+              { title: "Músicas Sem Copyright", desc: "Trilhas sonoras seguras para seus projetos.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
+              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo Exclusivo", desc: "Networking com outros criadores de conteúdo." }
             ].map((bonus, i) => (
               <motion.div
                 key={i}
@@ -480,27 +480,34 @@ export default function App() {
         <div className="max-w-5xl mx-auto">
           <SectionTitle>PERGUNTAS FREQUENTES</SectionTitle>
           <div className="space-y-4">
-            <FAQItem question="Preciso aparecer nos vídeos?" answer="Não! O Packlandia foi criado justamente para quem quer crescer perfis 'dark', onde o foco é o conteúdo e não a pessoa. Você pode monetizar sem nunca mostrar o rosto." />
-            <FAQItem question="Como recebo o acesso?" answer="Imediatamente após a confirmação do pagamento, você receberá um e-mail com todos os dados de acesso à nossa plataforma exclusiva onde estão hospedados todos os vídeos e bônus." />
-            <FAQItem question="Preciso saber editar vídeos?" answer="Não. Os vídeos já estão cortados e prontos. Se quiser adicionar sua marca d'água ou uma legenda diferente, ensinamos como fazer de forma rápida pelo celular." />
-            <FAQItem question="O conteúdo é atualizado?" answer="Sim! Nossa equipe adiciona novos cortes e tendências semanalmente para garantir que você sempre tenha conteúdo fresco para postar." />
-            <FAQItem question="Posso usar em quais redes sociais?" answer="Em todas! TikTok, Instagram Reels, YouTube Shorts, Kwai... O formato vertical é ideal para todas as plataformas de vídeos curtos." />
+            <FAQItem question="Preciso aparecer nos vídeos?" answer="Não! O Packlandia foi criado para facilitar a vida de quem quer criar perfis onde o foco é o conteúdo. Existem diversas formas de buscar resultados sem nunca mostrar o rosto." />
+            <FAQItem question="Como recebo o acesso?" answer="Imediatamente após a confirmação do pagamento, você receberá um e-mail com todos os dados de acesso à nossa plataforma onde estão organizados todos os vídeos e bônus." />
+            <FAQItem question="Preciso saber editar vídeos?" answer="Não. Os vídeos já estão cortados e prontos para uso. Se desejar personalizar, o processo é simples e pode ser feito pelo celular." />
+            <FAQItem question="O conteúdo é atualizado?" answer="Sim! Nossa equipe busca novos cortes e tendências periodicamente para que você tenha volume constante de conteúdo." />
+            <FAQItem question="Posso usar em quais redes sociais?" answer="Em diversas plataformas! TikTok, Instagram Reels, YouTube Shorts, Kwai... O formato vertical é versátil para vídeos curtos." />
           </div>
         </div>
       </section>
 
       {/* --- Footer --- */}
-      <footer className="py-24 md:py-32 px-4 border-t border-white/5 text-center text-text-dim/40">
+      <footer className="py-24 md:py-32 px-4 border-t border-white/5 text-center bg-black/40">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[10px] md:text-xs mb-12 leading-relaxed max-w-5xl mx-auto uppercase tracking-widest font-bold">
-            AVISO LEGAL: Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc. Os resultados podem variar de pessoa para pessoa. Todas as estratégias e investimentos envolvem risco de perda. Nenhuma informação contida neste produto deve ser interpretada como uma garantia de resultados.
-          </p>
-          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-12">
+          <div className="bg-white/5 p-8 md:p-12 rounded-[40px] border border-white/10 mb-16">
+            <h4 className="text-white font-black uppercase tracking-widest mb-6 flex items-center justify-center gap-3">
+              <ShieldCheck className="w-6 h-6 text-accent" />
+              Aviso Legal Importante
+            </h4>
+            <p className="text-[11px] md:text-sm text-text-dim leading-relaxed max-w-5xl mx-auto uppercase tracking-wider font-medium">
+              Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc. <br /><br />
+              <span className="text-white">OS RESULTADOS PODEM VARIAR DE PESSOA PARA PESSOA.</span> Não há garantia de ganhos ou resultados específicos. O sucesso depende do esforço individual, consistência e aplicação correta das estratégias de cada usuário. Nenhuma informação contida neste produto deve ser interpretada como uma promessa ou garantia de resultados.
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-[10px] md:text-xs font-black uppercase tracking-[0.3em] mb-12 text-text-dim/60">
             <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
             <a href="#" className="hover:text-white transition-colors">Privacidade</a>
             <a href="#" className="hover:text-white transition-colors">Contato</a>
           </div>
-          <p className="text-[10px] font-medium">© 2026 Packlandia - Todos os direitos reservados.</p>
+          <p className="text-[10px] font-medium text-text-dim/30">© 2026 Packlandia - Todos os direitos reservados.</p>
         </div>
       </footer>
     </div>
