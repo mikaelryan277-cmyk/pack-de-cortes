@@ -195,7 +195,7 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               className="bg-accent/10 text-accent border border-accent/30 px-5 py-2 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.2em] w-fit mb-8 shadow-neon-accent backdrop-blur-sm"
             >
-              🚀 97% das vagas preenchidas
+              🔥 Mais de 3.800 criadores já têm acesso
             </motion.div>
 
             <motion.h1 
@@ -203,7 +203,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-8xl font-sans font-black leading-[0.9] tracking-tighter uppercase mb-8"
             >
-              ACELERE SUA PRODUÇÃO COM <span className="text-accent text-glow-accent">CORTES TEMÁTICOS!</span>
+              Poste todo dia no TikTok <span className="text-accent text-glow-accent">sem gravar nada</span>
             </motion.h1>
 
             <motion.p 
@@ -212,7 +212,7 @@ export default function App() {
               transition={{ delay: 0.1 }}
               className="text-lg md:text-2xl text-text-dim max-w-2xl mb-12 font-medium leading-relaxed"
             >
-              Facilite sua rotina de postagens. Tenha acesso à maior biblioteca de cortes temáticos do Brasil, com todos os nichos mais buscados do momento.
+              O método que criadores sem rosto usam pra crescer postando vídeos prontos — sem aparecer, sem editar, sem travar.
             </motion.p>
 
             <motion.div
@@ -274,7 +274,7 @@ export default function App() {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Conteúdo focado em retenção que pode auxiliar no engajamento do seu perfil.">
+          <SectionTitle subtitle="Conteúdo que para o scroll e segura o espectador — sem você precisar aparecer em nenhum segundo.">
             ESTRATÉGIAS UTILIZADAS POR CRIADORES QUE <span className="text-cyan text-glow-cyan">NÃO MOSTRAM O ROSTO</span>
           </SectionTitle>
           
@@ -296,7 +296,7 @@ export default function App() {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Mais de 5.000 vídeos prontos para facilitar sua produção de conteúdo.">
+          <SectionTitle subtitle="50.000+ vídeos que param o scroll — prontos pra você postar agora.">
             O QUE VOCÊ VAI RECEBER
           </SectionTitle>
           
@@ -347,10 +347,10 @@ export default function App() {
           <SectionTitle>COMO FUNCIONA?</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Crie sua conta", desc: "Configure seu perfil de nicho com facilidade." },
-              { icon: <Play className="w-10 h-10" />, title: "Poste os cortes", desc: "Utilize nossa biblioteca de vídeos prontos para postar." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Divulgue produtos", desc: "Você pode utilizar estratégias de divulgação como afiliado." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Consistência", desc: "Mantenha a frequência e otimize seu fluxo de trabalho." }
+              { icon: <Users className="w-10 h-10" />, title: "Crie o Perfil", desc: "Monte sua conta de nicho no TikTok em menos de 5 minutos." },
+              { icon: <Play className="w-10 h-10" />, title: "Escolha os Vídeos", desc: "Selecione os cortes prontos que mais bombam no seu nicho escolhido." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste sem Gravar", desc: "Mantenha a consistência postando vídeos de alta retenção sem aparecer." },
+              { icon: <DollarSign className="w-10 h-10" />, title: "Fature na Bio", desc: "Direcione o tráfego viral para seu link e transforme views em dinheiro." }
             ].map((step, i) => (
               <motion.div
                 key={i}
