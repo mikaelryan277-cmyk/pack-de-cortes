@@ -7,7 +7,7 @@
 
   --color-bg: #050505;
   --color-surface: #121212;
-  --color-accent: #A855F7;
+  --color-accent: #39FF14;
   --color-cyan: #06B6D4;
   --color-text-dim: #A1A1AA;
   --color-border-dim: #27272A;
@@ -22,13 +22,13 @@
 
 @layer utilities {
   .text-glow-accent {
-    text-shadow: 0 0 20px rgba(168, 85, 246, 0.6);
+    text-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
   }
   .text-glow-cyan {
     text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
   }
   .shadow-neon-accent {
-    box-shadow: 0 0 20px rgba(168, 85, 246, 0.3);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
   }
   .shadow-neon-cyan {
     box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);

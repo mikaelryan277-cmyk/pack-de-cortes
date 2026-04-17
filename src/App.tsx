@@ -246,7 +246,7 @@ export default function App() {
             <div className="absolute -inset-4 bg-accent/20 blur-[100px] rounded-full" />
             <img 
               src="https://packlandia.com/wp-content/uploads/2025/09/banner_index.png" 
-              className="relative z-10 w-full h-auto rounded-[40px] shadow-[0_0_50px_rgba(168,85,246,0.2)] border border-white/10" 
+              className="relative z-10 w-full h-auto rounded-[40px] shadow-[0_0_50px_rgba(57,255,20,0.2)] border border-white/10" 
               alt="Packlandia Preview"
               referrerPolicy="no-referrer"
             />
@@ -422,7 +422,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-surface/60 backdrop-blur-3xl p-10 md:p-24 rounded-[60px] border-2 border-accent/40 shadow-[0_0_100px_rgba(168,85,246,0.2)] text-center relative"
+            className="bg-surface/60 backdrop-blur-3xl p-10 md:p-24 rounded-[60px] border-2 border-accent/40 shadow-[0_0_100px_rgba(57,255,20,0.2)] text-center relative"
           >
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-4 w-full px-4">
               <div className="bg-accent text-white px-8 py-2.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest shadow-neon-accent">OFERTA LIMITADA</div>
@@ -444,7 +444,7 @@ export default function App() {
               </div>
             </div>
 
-            <Button href={checkoutLink} className="text-2xl md:text-4xl px-16 py-8 md:py-12 w-full shadow-[0_0_60px_rgba(168,85,246,0.4)]">
+            <Button href={checkoutLink} className="text-2xl md:text-4xl px-16 py-8 md:py-12 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
               GARANTIR ACESSO AGORA
             </Button>
 
