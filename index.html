@@ -8,29 +8,6 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      (function () {
-        if (window.location.pathname.includes('/ofertaespecial')) {
-          // Script para a página de oferta especial - Limpa o histórico para evitar loops
-          window.history.replaceState({}, '', window.location.href);
-        } else {
-          // Script para a página principal
-          window.addEventListener('load', function () {
-            // Aguarda um pouco para garantir que a página carregou
-            setTimeout(function () {
-              // Cria duas entradas no histórico
-              history.pushState({ page: '1' }, '', location.href);
-              history.pushState({ page: '2' }, '', location.href);
-            }, 300);
-
-            // Quando o usuário apertar voltar, envia para a oferta especial
-            window.addEventListener('popstate', function () {
-              window.location.href = '/ofertaespecial';
-            });
-          });
-        }
-      })();
-    </script>
   </body>
 </html>
 
