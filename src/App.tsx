@@ -168,7 +168,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 
 // --- Main App ---
 
-export default function App() {
+const MainLandingPage = () => {
   const [timeLeft, setTimeLeft] = useState({ minutes: 14, seconds: 59 });
 
   useEffect(() => {
@@ -180,6 +180,20 @@ export default function App() {
       });
     }, 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    // Back Redirect Logic
+    if (!window.location.pathname.includes('/ofertaespecial')) {
+      window.history.pushState(null, null, window.location.href);
+
+      const handlePopState = () => {
+        window.location.href = '/ofertaespecial';
+      };
+
+      window.addEventListener('popstate', handlePopState);
+      return () => window.removeEventListener('popstate', handlePopState);
+    }
   }, []);
 
   const checkoutLink = "https://ggcheckout.app/checkout/v4/pjsYjLZHMbzBEtJlizlc";
@@ -512,4 +526,220 @@ export default function App() {
       </footer>
     </div>
   );
+};
+
+const SpecialOfferPage = () => {
+  const [timeLeft, setTimeLeft] = useState({ minutes: 15, seconds: 0 });
+
+  useEffect(() => {
+    // No-index meta
+    const meta = document.createElement('meta');
+    meta.name = "robots";
+    meta.content = "noindex";
+    document.head.appendChild(meta);
+    return () => { document.head.removeChild(meta); };
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { minutes: prev.minutes - 1, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const checkoutLink = "https://ggcheckout.app/checkout/v4/YgioHiOOGkpZtJbm2JEo";
+
+  return (
+    <div className="min-h-screen bg-bg selection:bg-accent selection:text-white font-sans overflow-x-hidden">
+      {/* --- Special Offer Hero --- */}
+      <section className="pt-24 pb-12 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-block bg-accent/10 text-accent border border-accent/30 px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest mb-8 shadow-neon-accent"
+          >
+            🔥 OFERTA DE ÚLTIMA CHANCE
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-7xl font-black leading-tight uppercase tracking-tighter mb-6 lg:mb-8"
+          >
+            🎁 50% OFF – <span className="text-accent text-glow-accent">AGORA OU NUNCA</span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl md:text-3xl font-medium text-text-dim mb-8"
+          >
+            Você quase saiu… então liberamos algo exclusivo para você.
+          </motion.p>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+          >
+            O mesmo Pack Cortes Virais, com os mesmos bônus e mesma entrega, por metade do valor da oferta original.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* --- Main Offer Card --- */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-surface/60 backdrop-blur-3xl p-10 md:p-20 rounded-[60px] border-2 border-accent/40 shadow-[0_0_100px_rgba(57,255,20,0.2)] text-center relative"
+          >
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-accent text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest shadow-neon-accent">
+              OFERTA EXCLUSIVA
+            </div>
+
+            <div className="mb-12">
+              <span className="text-text-dim line-through text-2xl md:text-3xl block mb-2 font-black">DE R$ 19,90</span>
+              <p className="text-lg md:text-xl font-bold text-gray-400 mb-8">Hoje você garante por apenas metade do valor da oferta original</p>
+              
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                <span className="text-3xl font-black uppercase tracking-tight">POR APENAS</span>
+                <span className="text-8xl md:text-[140px] font-black text-cyan text-glow-cyan leading-none">R$ 9,90</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mb-12 max-w-lg mx-auto">
+              {[
+                { icon: <Zap className="w-5 h-5" />, text: "ACESSO VITALÍCIO" },
+                { icon: <Layers className="w-5 h-5" />, text: "50.000 CORTES" },
+                { icon: <TrendingUp className="w-5 h-5" />, text: "36 NICHOS" },
+                { icon: <Gift className="w-5 h-5" />, text: "4 BÔNUS INCLUSOS" }
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 text-[10px] md:text-xs font-black uppercase tracking-widest text-white/80 bg-white/5 p-3 rounded-xl border border-white/10">
+                  <span className="text-accent">{item.icon}</span>
+                  {item.text}
+                </div>
+              ))}
+            </div>
+
+            <Button href={checkoutLink} className="text-2xl md:text-4xl px-12 py-8 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
+              🔒 GARANTIR AGORA COM 50% OFF
+            </Button>
+
+            <div className="mt-12 flex flex-col items-center gap-4 bg-black/40 p-6 rounded-3xl border border-white/5">
+              <div className="flex items-center gap-4">
+                <Clock className="w-8 h-8 text-accent animate-pulse" />
+                <div className="text-left">
+                  <div className="text-xs font-black uppercase tracking-[0.2em] text-text-dim">Essa condição expira em:</div>
+                  <div className="text-4xl font-mono font-black text-white">
+                    {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- Benefits Grid --- */}
+      <section className="py-24 px-4 bg-surface/20">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { title: "Acesso imediato", desc: "Receba seus dados de login em segundos após a confirmação.", icon: <Zap className="w-10 h-10" /> },
+              { title: "Mesmos bônus", desc: "Você leva todos os bônus da oferta de R$ 19,90 sem custo extra.", icon: <Gift className="w-10 h-10" /> },
+              { title: "Atualizações", desc: "Mesma entrega e atualizações semanais de conteúdo.", icon: <Rocket className="w-10 h-10" /> },
+              { title: "Preço Reduzido", desc: "A única diferença real é a economia agressiva hoje.", icon: <DollarSign className="w-10 h-10" /> }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-surface/40 p-10 rounded-[40px] border border-white/5 text-center group hover:border-accent/30 transition-all"
+              >
+                <div className="text-accent mb-6 flex justify-center group-hover:scale-110 transition-transform">{item.icon}</div>
+                <h3 className="text-xl font-black uppercase mb-4">{item.title}</h3>
+                <p className="text-text-dim text-sm leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- Visual Comparison --- */}
+      <section className="py-24 px-4">
+        <div className="max-w-4xl mx-auto">
+          <SectionTitle>COMPARAÇÃO HONESTA</SectionTitle>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-surface/20 p-10 rounded-[40px] border border-white/5 text-center opacity-50 grayscale">
+              <h4 className="text-2xl font-black mb-6 uppercase">Oferta Original</h4>
+              <div className="text-5xl font-black mb-8">R$ 19,90</div>
+              <ul className="space-y-4 text-sm font-bold text-text-dim">
+                <li className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> CONDIÇÃO PADRÃO</li>
+                <li className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> MESMA ENTREGA</li>
+                <li className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> MESMOS BÔNUS</li>
+              </ul>
+            </div>
+            <div className="bg-accent/5 p-10 rounded-[40px] border-2 border-accent/40 text-center shadow-[0_0_40px_rgba(57,255,20,0.1)]">
+              <h4 className="text-2xl font-black mb-6 uppercase text-accent">Oferta Especial</h4>
+              <div className="text-5xl font-black mb-8 text-cyan">R$ 9,90</div>
+              <ul className="space-y-4 text-sm font-bold">
+                <li className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> METADE DO VALOR</li>
+                <li className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> MESMA ENTREGA</li>
+                <li className="flex items-center justify-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> MESMOS BÔNUS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- Final Urgency --- */}
+      <section className="py-24 md:py-40 px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-red-500/10 border-2 border-red-500/30 p-8 md:p-12 rounded-[40px] mb-12">
+            <p className="text-lg md:text-2xl font-black uppercase text-red-500 mb-4 animate-pulse">⚠️ ATENÇÃO!</p>
+            <p className="text-base md:text-xl font-medium text-gray-300">
+              Ao sair desta página, esta condição especial será removida e o valor volta ao normal.
+            </p>
+          </div>
+          <Button href={checkoutLink} className="text-2xl md:text-4xl px-12 py-8 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
+            QUERO MEU ACESSO COM 50% OFF
+          </Button>
+        </div>
+      </section>
+
+      {/* Footer Reuse */}
+      <footer className="py-24 px-4 border-t border-white/5 text-center bg-black/40">
+        <p className="text-[10px] font-medium text-text-dim/30">© 2026 Packlandia - Todos os direitos reservados.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
+
+  if (currentPath === '/ofertaespecial') {
+    return <SpecialOfferPage />;
+  }
+
+  return <MainLandingPage />;
 }
