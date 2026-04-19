@@ -182,20 +182,6 @@ const MainLandingPage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    // Back Redirect Logic
-    if (!window.location.pathname.includes('/ofertaespecial')) {
-      window.history.pushState(null, null, window.location.href);
-
-      const handlePopState = () => {
-        window.location.href = '/ofertaespecial';
-      };
-
-      window.addEventListener('popstate', handlePopState);
-      return () => window.removeEventListener('popstate', handlePopState);
-    }
-  }, []);
-
   const checkoutLink = "https://ggcheckout.app/checkout/v4/pjsYjLZHMbzBEtJlizlc";
 
   return (

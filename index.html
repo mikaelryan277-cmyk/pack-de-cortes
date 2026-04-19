@@ -8,6 +8,24 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function () {
+        // Lógica de Back Redirect
+        if (window.location.pathname.includes('/ofertaespecial')) {
+          // Na página de oferta especial, reseta o estado para evitar loops
+          history.replaceState(null, '', location.href);
+        } else {
+          // Na página principal, cria entradas no histórico para capturar o "voltar"
+          history.replaceState({ page: 'landing' }, '', location.href);
+          history.pushState({ page: 'landing-back' }, '', location.href);
+
+          window.addEventListener('popstate', function () {
+            // Redireciona para a oferta especial
+            window.location.replace('/ofertaespecial');
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
 
