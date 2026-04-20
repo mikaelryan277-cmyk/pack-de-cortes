@@ -348,7 +348,7 @@ const MainLandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-8xl font-sans font-black leading-[0.9] tracking-tighter uppercase mb-8"
             >
-              Poste todo dia no TikTok <span className="text-accent text-glow-accent">sem gravar nada</span>
+              Nunca mais trave na hora de postar conteúdo
             </motion.h1>
 
             <motion.p 
@@ -441,7 +441,7 @@ const MainLandingPage = () => {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="50.000+ vídeos que param o scroll — prontos pra você postar agora.">
+          <SectionTitle subtitle="5.000+ vídeos prontos, organizados por nicho — é só escolher e postar.">
             O QUE VOCÊ VAI RECEBER
           </SectionTitle>
           
@@ -495,7 +495,7 @@ const MainLandingPage = () => {
               { icon: <Users className="w-10 h-10" />, title: "Crie o Perfil", desc: "Monte sua conta de nicho no TikTok em menos de 5 minutos." },
               { icon: <Play className="w-10 h-10" />, title: "Escolha os Vídeos", desc: "Selecione os cortes prontos que mais bombam no seu nicho escolhido." },
               { icon: <TrendingUp className="w-10 h-10" />, title: "Poste sem Gravar", desc: "Mantenha a consistência postando vídeos de alta retenção sem aparecer." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Fature na Bio", desc: "Direcione o tráfego viral para seu link e transforme views em dinheiro." }
+              { icon: <DollarSign className="w-10 h-10" />, title: "Cresça na Bio", desc: "Direcione sua audiência para o link da bio e aumente seu alcance organicamente." }
             ].map((step, i) => (
               <motion.div
                 key={i}
