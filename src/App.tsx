@@ -26,115 +26,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 
-// --- Components ---
-
-const ExitIntentPopup = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 15, seconds: 0 });
-  const checkoutLink = "https://ggcheckout.app/checkout/v4/YgioHiOOGkpZtJbm2JEo";
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
-        if (prev.minutes > 0) return { minutes: prev.minutes - 1, seconds: 59 };
-        return prev;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [isOpen]);
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-          />
-          
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-2xl bg-surface/80 border-2 border-accent/40 rounded-[40px] p-8 md:p-12 shadow-[0_0_100px_rgba(57,255,20,0.2)] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Background Glow */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/20 blur-[80px] rounded-full" />
-            
-            <button 
-              onClick={onClose}
-              className="absolute top-6 right-6 text-text-dim hover:text-white transition-colors"
-            >
-              <Zap className="w-8 h-8 rotate-45" />
-            </button>
-
-            <div className="text-center relative z-10">
-              <div className="inline-block bg-accent text-white px-6 py-2 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest shadow-neon-accent mb-6">
-                OFERTA EXCLUSIVA
-              </div>
-
-              <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase tracking-tighter leading-tight">
-                🎁 Espera! Antes de sair...
-              </h2>
-              
-              <p className="text-accent font-black text-lg md:text-xl uppercase tracking-tight mb-6">
-                Liberamos uma condição especial e temporária para você.
-              </p>
-
-              <p className="text-text-dim text-sm md:text-base leading-relaxed mb-8 max-w-lg mx-auto">
-                Você pode garantir o mesmo produto, com os mesmos bônus e acesso completo, por apenas 50% do valor da oferta original.
-              </p>
-
-              <div className="flex flex-col items-center mb-10">
-                <span className="text-text-dim line-through text-xl mb-2 font-black">DE R$ 19,90</span>
-                <div className="flex items-center gap-4">
-                  <span className="text-accent font-black text-3xl md:text-4xl">50% OFF</span>
-                  <div className="h-8 w-px bg-white/10" />
-                  <div className="text-4xl md:text-6xl font-black text-cyan text-glow-cyan leading-none">R$ 9,90</div>
-                </div>
-              </div>
-
-              <div className="bg-black/40 rounded-3xl p-6 border border-white/5 mb-8 flex flex-wrap justify-center gap-6">
-                <div className="flex items-center gap-3">
-                  <Clock className="w-6 h-6 text-accent animate-pulse" />
-                  <div className="text-left">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-text-dim">Expira em:</div>
-                    <div className="text-2xl font-mono font-black">
-                      {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
-                    </div>
-                  </div>
-                </div>
-                <div className="w-px h-10 bg-white/5 hidden md:block" />
-                <ul className="text-[10px] md:text-xs font-bold text-left space-y-2 uppercase tracking-tight">
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Mesmo conteúdo</li>
-                  <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Mesmos bônus</li>
-                </ul>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <Button href={checkoutLink} className="text-xl md:text-2xl py-6 md:py-8 w-full shadow-[0_0_40px_rgba(57,255,20,0.3)]">
-                  🔒 GARANTIR AGORA COM 50% OFF
-                </Button>
-                
-                <button 
-                  onClick={onClose}
-                  className="text-text-dim hover:text-white transition-colors text-xs font-black uppercase tracking-widest py-2"
-                >
-                  Continuar sem desconto
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
-  );
-};
+/// --- Components ---
 
 const Button = ({ children, className = '', onClick, href }: { children: React.ReactNode, className?: string, onClick?: () => void, href?: string }) => {
   const content = (
@@ -278,7 +170,6 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 
 const MainLandingPage = () => {
   const [timeLeft, setTimeLeft] = useState({ minutes: 14, seconds: 59 });
-  const [showExitPopup, setShowExitPopup] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -291,46 +182,10 @@ const MainLandingPage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    // Exit Intent Logic
-    const handleExitIntent = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        triggerPopup();
-      }
-    };
-
-    const handleBackPress = (e: PopStateEvent) => {
-      triggerPopup();
-      // Push state back to prevent default browser back behavior until the popup is shown
-      window.history.pushState({ exit: true }, '', window.location.href);
-    };
-
-    const triggerPopup = () => {
-      const hasShown = sessionStorage.getItem('exit_popup_shown');
-      if (!hasShown) {
-        setShowExitPopup(true);
-        sessionStorage.setItem('exit_popup_shown', 'true');
-      }
-    };
-
-    // Desktop
-    document.addEventListener('mouseleave', handleExitIntent);
-    
-    // Mobile - Capture back button
-    window.history.pushState({ exit: true }, '', window.location.href);
-    window.addEventListener('popstate', handleBackPress);
-
-    return () => {
-      document.removeEventListener('mouseleave', handleExitIntent);
-      window.removeEventListener('popstate', handleBackPress);
-    };
-  }, []);
-
   const checkoutLink = "https://ggcheckout.app/checkout/v4/pjsYjLZHMbzBEtJlizlc";
 
   return (
     <div className="min-h-screen bg-bg selection:bg-accent selection:text-white">
-      <ExitIntentPopup isOpen={showExitPopup} onClose={() => setShowExitPopup(false)} />
       {/* --- Hero Section --- */}
       <section className="relative min-h-screen flex items-center px-4 py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -659,6 +514,175 @@ const MainLandingPage = () => {
   );
 };
 
+const SpecialOfferPage = () => {
+  const [timeLeft, setTimeLeft] = useState({ minutes: 15, seconds: 0 });
+
+  useEffect(() => {
+    // No-index meta
+    const meta = document.createElement('meta');
+    meta.name = "robots";
+    meta.content = "noindex, nofollow";
+    document.head.appendChild(meta);
+    return () => { document.head.removeChild(meta); };
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { minutes: prev.minutes - 1, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const checkoutLink = "https://ggcheckout.app/checkout/v4/YgioHiOOGkpZtJbm2JEo";
+
+  return (
+    <div className="min-h-screen bg-bg selection:bg-accent selection:text-white font-sans overflow-x-hidden">
+      {/* --- Special Offer Hero --- */}
+      <section className="pt-24 pb-12 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-block bg-accent/10 text-accent border border-accent/30 px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest mb-8 shadow-neon-accent"
+          >
+            🔥 OFERTA DE ÚLTIMA CHANCE
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-7xl font-black leading-tight uppercase tracking-tighter mb-6 lg:mb-8"
+          >
+            🎁 Oferta Especial de Última Chance – <span className="text-accent text-glow-accent">50% OFF</span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl md:text-3xl font-medium text-text-dim mb-4"
+          >
+            Você quase saiu… então liberamos algo exclusivo para você.
+          </motion.p>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+          >
+            O mesmo produto pela metade do preço da oferta original.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* --- Support Text --- */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-surface/30 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-white/5"
+          >
+            <p className="text-lg md:text-2xl text-text-dim leading-relaxed mb-8">
+              Sim, é isso mesmo. Você sabe quanto custa o valor original. Agora você pode garantir por <span className="text-accent font-black">50% do preço</span> – oferta única, exclusiva e que não estará disponível novamente.
+            </p>
+            <p className="text-red-500 font-bold uppercase tracking-widest animate-pulse">
+              Se você recusar aqui, o preço volta ao normal.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* --- Price Card --- */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-surface/60 backdrop-blur-3xl p-10 md:p-20 rounded-[60px] border-2 border-accent/40 shadow-[0_0_100px_rgba(57,255,20,0.2)] text-center relative"
+          >
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-accent text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest shadow-neon-accent">
+              OFERTA EXCLUSIVA
+            </div>
+
+            <div className="mb-12">
+              <span className="text-3xl md:text-5xl font-black text-cyan text-glow-cyan leading-none block mb-4 uppercase">
+                Metade da oferta original
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 text-left max-w-lg mx-auto">
+              {[
+                "Acesso imediato",
+                "Mesmos bônus inclusos",
+                "Mesma entrega automática",
+                "Tudo igual à oferta original",
+                "Diferença: preço reduzido pela metade"
+              ].map((benefit, i) => (
+                <div key={i} className="flex items-center gap-3 text-sm font-bold uppercase tracking-tight text-white/80">
+                  <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0" />
+                  {benefit}
+                </div>
+              ))}
+            </div>
+
+            <Button href={checkoutLink} className="text-2xl md:text-4xl px-12 py-8 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
+              🔒 Garantir Agora por 50% do Preço
+            </Button>
+
+            <div className="mt-12 flex flex-col items-center gap-4 bg-black/40 p-6 rounded-3xl border border-white/5">
+              <div className="flex items-center gap-4">
+                <Clock className="w-8 h-8 text-accent animate-pulse" />
+                <div className="text-left">
+                  <div className="text-xs font-black uppercase tracking-[0.2em] text-text-dim">Condição expira em:</div>
+                  <div className="text-4xl font-mono font-black text-white">
+                    {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 flex flex-wrap justify-center gap-10 opacity-80">
+              <div className="flex items-center gap-4">
+                <ShieldCheck className="w-12 h-12 text-cyan" />
+                <div className="text-left">
+                  <div className="font-black text-sm md:text-base uppercase tracking-tight">7 DIAS DE GARANTIA</div>
+                  <div className="text-xs text-text-dim">Risco zero para você.</div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer Reuse */}
+      <footer className="py-24 px-4 border-t border-white/5 text-center bg-black/40">
+        <p className="text-[10px] font-medium text-text-dim/30">© 2026 Packlandia - Todos os direitos reservados.</p>
+      </footer>
+    </div>
+  );
+};
+
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
+
+  if (currentPath === '/ofertaespecial') {
+    return <SpecialOfferPage />;
+  }
+
   return <MainLandingPage />;
 }
