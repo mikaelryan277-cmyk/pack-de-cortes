@@ -348,7 +348,7 @@ const MainLandingPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { icon: <Users className="w-10 h-10" />, title: "Crie o Perfil", desc: "Monte sua conta de nicho no TikTok em menos de 5 minutos." },
-              { icon: <Play className="w-10 h-10" />, title: "Escolha os Vídeos", desc: "Selecione os cortes prontos que mais bombam no seu nicho escolhido." },
+              { icon: <Play className="w-10 h-10" />, title: "Escolha os Vídeos", desc: "Selecione os vídeos com maior potencial de engajamento no seu nicho escolhido." },
               { icon: <TrendingUp className="w-10 h-10" />, title: "Poste sem Gravar", desc: "Mantenha a consistência postando vídeos de alta retenção sem aparecer." },
               { icon: <DollarSign className="w-10 h-10" />, title: "Cresça na Bio", desc: "Direcione sua audiência para o link da bio e aumente seu alcance organicamente." }
             ].map((step, i) => (
@@ -388,7 +388,7 @@ const MainLandingPage = () => {
       {/* --- Bonus Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Ao garantir sua vaga hoje, você leva esses bônus exclusivos.">PRESENTES EXCLUSIVOS (BÔNUS)</SectionTitle>
+          <SectionTitle subtitle="Ao garantir seu acesso hoje, você leva esses bônus exclusivos.">PRESENTES EXCLUSIVOS (BÔNUS)</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { title: "Pack Memes", desc: "Mais de 1000 memes para facilitar suas edições.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
@@ -451,7 +451,7 @@ const MainLandingPage = () => {
             <div className="mt-16 flex flex-col items-center gap-10">
               <div className="flex items-center gap-4 text-red-500 font-black uppercase tracking-widest animate-pulse text-sm md:text-lg">
                 <AlertTriangle className="w-6 h-6 md:w-8 md:h-8" />
-                ALTA DEMANDA: ÚLTIMAS VAGAS DISPONÍVEIS
+                OFERTA POR TEMPO LIMITADO: ÚLTIMAS UNIDADES
               </div>
               
               <div className="flex flex-wrap justify-center gap-10 md:gap-16 opacity-80">
@@ -480,7 +480,7 @@ const MainLandingPage = () => {
         <div className="max-w-5xl mx-auto">
           <SectionTitle>PERGUNTAS FREQUENTES</SectionTitle>
           <div className="space-y-4">
-            <FAQItem question="Preciso aparecer nos vídeos?" answer="Não! O Packlandia foi criado para facilitar a vida de quem quer criar perfis onde o foco é o conteúdo. Existem diversas formas de buscar resultados sem nunca mostrar o rosto." />
+            <FAQItem question="Preciso aparecer nos vídeos?" answer="Não! O Packlandia foi criado para facilitar a vida de quem quer criar perfis focados em conteúdo de entretenimento e informação. Existem diversas formas de crescer seu perfil sem nunca precisar mostrar o rosto." />
             <FAQItem question="Como recebo o acesso?" answer="Imediatamente após a confirmação do pagamento, você receberá um e-mail com todos os dados de acesso à nossa plataforma onde estão organizados todos os vídeos e bônus." />
             <FAQItem question="Preciso saber editar vídeos?" answer="Não. Os vídeos já estão cortados e prontos para uso. Se desejar personalizar, o processo é simples e pode ser feito pelo celular." />
             <FAQItem question="O conteúdo é atualizado?" answer="Sim! Nossa equipe busca novos cortes e tendências periodicamente para que você tenha volume constante de conteúdo." />
