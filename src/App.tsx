@@ -73,57 +73,68 @@ const SectionTitle = ({ children, subtitle, className = '', align = 'center' }: 
 const Carousel = ({ images, autoPlayInterval = 4000 }: { images: string[], autoPlayInterval?: number }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const scrollRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
+      if (scrollRef.current) {
+        const nextIndex = (currentIndex + 1) % images.length;
+        scrollRef.current.scrollTo({
+          left: scrollRef.current.offsetWidth * nextIndex,
+          behavior: 'smooth'
+        });
+      }
     }, autoPlayInterval);
     return () => clearInterval(interval);
-  }, [images.length, autoPlayInterval, isPaused]);
+  }, [images.length, autoPlayInterval, isPaused, currentIndex]);
 
-  const onDragEnd = (_: any, info: any) => {
-    const swipeThreshold = 50;
-    if (info.offset.x < -swipeThreshold) {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    } else if (info.offset.x > swipeThreshold) {
-      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement;
+    const index = Math.round(target.scrollLeft / target.offsetWidth);
+    if (index !== currentIndex) {
+      setCurrentIndex(index);
+    }
+  };
+
+  const goToSlide = (i: number) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: scrollRef.current.offsetWidth * i,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
-    <div 
-      className="relative group w-full max-w-5xl mx-auto overflow-hidden rounded-3xl border border-white/5 shadow-2xl bg-black/20"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
-    >
-      <motion.div 
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        onDragEnd={onDragEnd}
-        animate={{ x: `-${currentIndex * 100}%` }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="flex cursor-grab active:cursor-grabbing"
+    <div className="relative group w-full max-w-4xl mx-auto px-4 lg:px-0">
+      <div 
+        ref={scrollRef}
+        onScroll={handleScroll}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={() => setIsPaused(true)}
+        onTouchEnd={() => setIsPaused(false)}
+        className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar rounded-[32px] border border-white/5 shadow-2xl bg-black/20"
+        style={{ WebkitOverflowScrolling: 'touch' }}
       >
         {images.map((img, i) => (
-          <div key={i} className="min-w-full aspect-video flex items-center justify-center bg-black/40 select-none">
+          <div key={i} className="min-w-full h-[300px] md:h-[500px] flex-shrink-0 flex items-center justify-center bg-black/40 select-none snap-center p-4 md:p-8">
             <img 
               src={img} 
               alt={`Slide ${i}`} 
-              className="w-full h-full object-contain pointer-events-none" 
+              className="max-w-full max-h-full object-contain pointer-events-none rounded-2xl shadow-2xl" 
               referrerPolicy="no-referrer" 
             />
           </div>
         ))}
-      </motion.div>
+      </div>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
         {images.map((_, i) => (
           <button 
             key={i} 
-            onClick={() => setCurrentIndex(i)}
+            onClick={() => goToSlide(i)}
             className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${currentIndex === i ? 'bg-accent w-4' : 'bg-white/10'}`}
           />
         ))}
@@ -275,7 +286,7 @@ const MainLandingPage = () => {
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionTitle subtitle="Conteúdo que para o scroll e segura o espectador — sem você precisar aparecer em nenhum segundo.">
-            ESTRATÉGIAS UTILIZADAS POR CRIADORES QUE <span className="text-cyan text-glow-cyan">NÃO MOSTRAM O ROSTO</span>
+            COMO CRESCER NO TIKTOK <span className="text-cyan text-glow-cyan">SEM APARECER EM NENHUM VÍDEO</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -394,7 +405,7 @@ const MainLandingPage = () => {
               { title: "Pack Memes", desc: "Mais de 1000 memes para facilitar suas edições.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
               { title: "Efeitos Sonoros", desc: "SFX profissionais para auxiliar na retenção.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
               { title: "Músicas Sem Copyright", desc: "Trilhas sonoras seguras para seus projetos.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo Exclusivo", desc: "Networking com outros criadores de conteúdo." }
+              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo Exclusivo", desc: "Acesse conteúdo novo toda semana e tire dúvidas com quem já está postando e crescendo." }
             ].map((bonus, i) => (
               <motion.div
                 key={i}
