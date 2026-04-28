@@ -29,11 +29,18 @@ import {
 /// --- Components ---
 
 const Button = ({ children, className = '', onClick, href }: { children: React.ReactNode, className?: string, onClick?: () => void, href?: string }) => {
+  const handleClick = () => {
+    if (href && typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'InitiateCheckout');
+    }
+    if (onClick) onClick();
+  };
+
   const content = (
     <motion.button
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      onClick={onClick}
+      onClick={handleClick}
       className={`bg-accent hover:bg-accent/90 text-white font-sans font-black py-5 px-10 rounded-2xl transition-all duration-300 shadow-neon-accent animate-pulse-soft uppercase tracking-tight text-center ${className}`}
     >
       {children}
@@ -41,7 +48,7 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
   );
 
   if (href) {
-    return <a href={href} target="_blank" rel="noopener noreferrer" className="block w-full md:w-auto">{content}</a>;
+    return <a href={href} target="_blank" rel="noopener noreferrer" className="block w-full md:w-auto" onClick={handleClick}>{content}</a>;
   }
   return content;
 };
@@ -679,6 +686,33 @@ const SpecialOfferPage = () => {
   );
 };
 
+const ThankYouPage = () => {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'Purchase', {
+        value: 19.90,
+        currency: 'BRL'
+      });
+    }
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-bg flex items-center justify-center px-4 font-sans text-center">
+      <div className="max-w-2xl bg-surface/40 backdrop-blur-xl p-10 md:p-16 rounded-[40px] border border-white/10 shadow-2xl">
+        <CheckCircle2 className="w-20 h-20 text-accent mx-auto mb-8 animate-pulse" />
+        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Acesso Confirmado!</h1>
+        <p className="text-xl text-text-dim mb-10 leading-relaxed">
+          Obrigado pela sua compra! Os detalhes do seu acesso foram enviados para o seu e-mail agora mesmo.
+        </p>
+        <div className="bg-accent/10 border border-accent/20 p-6 rounded-2xl mb-10">
+          <p className="text-accent font-bold uppercase tracking-widest text-sm">Verifique sua caixa de entrada e a pasta de spam.</p>
+        </div>
+        <Button onClick={() => window.location.href = "/"} className="text-xl">Voltar para a Início</Button>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
@@ -693,6 +727,10 @@ export default function App() {
 
   if (currentPath === '/ofertaespecial') {
     return <SpecialOfferPage />;
+  }
+
+  if (currentPath === '/obrigado') {
+    return <ThankYouPage />;
   }
 
   return <MainLandingPage />;
