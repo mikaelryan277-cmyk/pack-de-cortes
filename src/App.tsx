@@ -23,7 +23,9 @@ import {
   Layers,
   ChevronLeft,
   ChevronRight,
-  AlertTriangle
+  AlertTriangle,
+  Lock,
+  MessageSquare
 } from 'lucide-react';
 
 /// --- Components ---
@@ -431,65 +433,62 @@ const MainLandingPage = () => {
 
       {/* --- Final Offer --- */}
       <section className="py-40 md:py-64 px-6 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-25 blur-[200px]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-accent/40 rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-10 blur-[180px]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-accent rounded-full" />
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-surface/70 backdrop-blur-3xl p-12 md:p-32 rounded-[80px] border-2 border-accent/40 shadow-[0_0_120px_rgba(57,255,20,0.25)] text-center relative"
+            className="bg-surface/80 backdrop-blur-3xl p-10 md:p-20 rounded-[48px] border border-white/10 shadow-2xl text-center relative"
           >
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-6 w-full px-6">
-              <div className="bg-accent text-white px-10 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-neon-accent">OFERTA LIMITADA</div>
-              <div className="bg-cyan text-white px-10 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-neon-cyan">ACESSO IMEDIATO</div>
+            <div className="flex justify-center mb-10">
+              <div className="bg-accent/10 px-6 py-2 rounded-full border border-accent/20 flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-accent" />
+                <span className="text-accent text-[10px] font-black uppercase tracking-[0.2em]">Oferta Exclusiva & Segura</span>
+              </div>
             </div>
 
-            <Gift className="w-28 h-28 text-accent mx-auto mb-12 animate-float" />
-            <h2 className="text-5xl md:text-9xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.8] transition-all">A HORA DA <span className="text-accent">DECISÃO</span></h2>
+            <h2 className="text-4xl md:text-7xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.9]">
+              SUA ÚLTIMA CHANCE DE <span className="text-accent">MUDAR O JOGO</span>
+            </h2>
             
-            <div className="flex flex-col items-center mb-20">
-              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                <div className="flex flex-col items-center md:items-end">
-                  <span className="text-text-dim line-through text-2xl md:text-4xl mb-2 font-bold tracking-tight">DE R$ 99,99</span>
-                  <span className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white/90">POR APENAS</span>
+            <div className="mb-20">
+              <div className="flex flex-col items-center gap-2 mb-8">
+                <span className="text-text-dim/60 line-through text-xl md:text-2xl font-bold">DE R$ 99,90</span>
+                <div className="flex flex-col md:flex-row items-center md:items-baseline gap-2">
+                  <span className="text-2xl md:text-3xl font-black text-white/80">POR APENAS</span>
+                  <span className="text-7xl md:text-9xl font-sans font-black text-white leading-none">R$ 19,90</span>
                 </div>
-                <span className="text-9xl md:text-[200px] font-sans font-black text-cyan text-glow-cyan leading-none drop-shadow-2xl">R$ 19,90</span>
               </div>
-              <div className="mt-14 flex items-center gap-4 text-green-400 font-black uppercase tracking-widest bg-green-500/10 px-10 py-4 rounded-full border border-green-500/30 text-sm md:text-base">
-                <Zap className="w-6 h-6 fill-current" />
-                ACESSO VITALÍCIO — COMECE HOJE MESMO
+              <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/5 rounded-xl border border-white/10 text-[10px] md:text-xs font-bold text-text-dim uppercase tracking-widest">
+                Acesso Vitalício + Todos os Bônus Inclusos
               </div>
             </div>
 
-            <Button href={checkoutLink} className="text-3xl md:text-5xl px-20 py-10 md:py-14 w-full shadow-[0_0_80px_rgba(57,255,20,0.4)] rounded-[40px]">
-              QUERO MEUS VÍDEOS AGORA
+            <Button 
+              href={checkoutLink} 
+              className="text-2xl md:text-3xl px-16 py-8 md:py-10 w-full rounded-2xl shadow-none animate-none hover:shadow-[0_0_40px_rgba(57,255,20,0.2)] transition-all bg-accent hover:bg-accent/90"
+            >
+              GARANTIR ACESSO AGORA
             </Button>
 
-            <div className="mt-20 flex flex-col items-center gap-12">
-              <div className="flex items-center gap-5 text-red-500 font-black uppercase tracking-widest animate-pulse text-base md:text-2xl">
-                <AlertTriangle className="w-8 h-8 md:w-10 md:h-10" />
-                NÃO DEIXE PARA DEPOIS: Se você sair agora, perderá essa condição única.
-              </div>
-              
-              <div className="flex flex-wrap justify-center gap-10 md:gap-16 opacity-80">
-                <div className="flex items-center gap-4">
-                  <ShieldCheck className="w-12 h-12 text-cyan" />
-                  <div className="text-left">
-                    <div className="font-black text-sm md:text-base uppercase tracking-tight">7 DIAS DE GARANTIA</div>
-                    <div className="text-xs text-text-dim">Risco zero para você.</div>
-                  </div>
+            <div className="mt-16 pt-12 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+              {[
+                { icon: <ShieldCheck className="w-5 h-5" />, text: "Garantia de 7 dias" },
+                { icon: <Zap className="w-5 h-5" />, text: "Entrega imediata" },
+                { icon: <MessageSquare className="w-5 h-5" />, text: "Suporte disponível" },
+                { icon: <Lock className="w-5 h-5" />, text: "Compra 100% segura" }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-3">
+                  <div className="text-accent/60">{item.icon}</div>
+                  <span className="text-[10px] md:text-xs font-black text-text-dim/80 uppercase tracking-tight leading-tight">
+                    {item.text}
+                  </span>
                 </div>
-                <div className="flex items-center gap-4">
-                  <CheckCircle2 className="w-12 h-12 text-cyan" />
-                  <div className="text-left">
-                    <div className="font-black text-sm md:text-base uppercase tracking-tight">COMPRA SEGURA</div>
-                    <div className="text-xs text-text-dim">Ambiente 100% criptografado.</div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </motion.div>
         </div>
