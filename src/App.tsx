@@ -38,10 +38,10 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
 
   const content = (
     <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       onClick={handleClick}
-      className={`bg-accent hover:bg-accent/90 text-white font-sans font-black py-5 px-10 rounded-2xl transition-all duration-300 shadow-neon-accent animate-pulse-soft uppercase tracking-tight text-center ${className}`}
+      className={`bg-accent hover:bg-accent/90 text-white font-sans font-black py-5 md:py-6 px-8 md:px-12 rounded-2xl transition-all duration-300 shadow-neon-accent animate-pulse-soft uppercase tracking-tighter text-center leading-none ${className}`}
     >
       {children}
     </motion.button>
@@ -54,12 +54,12 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
 };
 
 const SectionTitle = ({ children, subtitle, className = '', align = 'center' }: { children: React.ReactNode, subtitle?: string, className?: string, align?: 'center' | 'left' }) => (
-  <div className={`mb-12 md:mb-20 ${align === 'center' ? 'text-center' : 'text-left'} ${className}`}>
+  <div className={`mb-16 md:mb-24 ${align === 'center' ? 'text-center' : 'text-left'} ${className}`}>
     <motion.h2 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-3xl md:text-6xl font-sans font-black mb-6 tracking-tighter uppercase leading-[0.95]"
+      className="text-4xl md:text-7xl font-sans font-black mb-6 tracking-tighter uppercase leading-[0.85]"
     >
       {children}
     </motion.h2>
@@ -69,7 +69,7 @@ const SectionTitle = ({ children, subtitle, className = '', align = 'center' }: 
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-text-dim text-lg md:text-xl max-w-3xl font-medium ${align === 'center' ? 'mx-auto' : ''}`}
+        className={`text-text-dim text-lg md:text-2xl max-w-4xl font-medium leading-relaxed ${align === 'center' ? 'mx-auto' : ''}`}
       >
         {subtitle}
       </motion.p>
@@ -205,49 +205,49 @@ const MainLandingPage = () => {
   return (
     <div className="min-h-screen bg-bg selection:bg-accent selection:text-white">
       {/* --- Hero Section --- */}
-      <section className="relative min-h-screen flex items-center px-4 py-24 md:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative z-10 text-left">
+      <section className="relative min-h-screen flex items-center px-6 py-28 md:py-48 overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="relative z-10 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="bg-accent/10 text-accent border border-accent/30 px-5 py-2 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.2em] w-fit mb-8 shadow-neon-accent backdrop-blur-sm"
+              className="bg-accent/10 text-accent border border-accent/30 px-6 py-2.5 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.25em] w-fit mb-10 shadow-neon-accent backdrop-blur-sm mx-auto lg:mx-0"
             >
-              🔥 Mais de 3.800 criadores já têm acesso
+              🔥 Para quem cansou de postar e ser ignorado
             </motion.div>
 
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-8xl font-sans font-black leading-[0.9] tracking-tighter uppercase mb-8"
+              className="text-5xl md:text-7xl lg:text-9xl font-sans font-black leading-[0.8] tracking-tighter uppercase mb-10"
             >
-              Nunca mais trave na hora de postar conteúdo
+              PARE DE TRAVAR NA HORA DE POSTAR
             </motion.h1>
 
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-lg md:text-2xl text-text-dim max-w-2xl mb-12 font-medium leading-relaxed"
+              className="text-lg md:text-2xl text-text-gray max-w-2xl mb-14 font-medium leading-relaxed mx-auto lg:mx-0"
             >
-              O método que criadores sem rosto usam pra crescer postando vídeos prontos — sem aparecer, sem editar, sem travar.
+              Você já sentiu que perde horas procurando o que postar e, no fim, seu perfil continua parado? O Packlandia entrega tudo pronto: vídeos de alta retenção que os grandes perfis usam para crescer, organizados para você apenas escolher e postar. Chega de tentar crescer sozinho baixando vídeos aleatórios e desorganizados.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row items-center gap-6"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8"
             >
-              <Button href={checkoutLink} className="text-xl md:text-2xl px-12 py-6 w-full sm:w-auto">
+              <Button href={checkoutLink} className="text-xl md:text-2xl w-full sm:w-auto">
                 GARANTIR ACESSO AGORA
               </Button>
 
-              <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 shadow-xl">
-                <Clock className="w-6 h-6 text-red-500 animate-pulse" />
+              <div className="flex items-center gap-5 bg-white/5 backdrop-blur-md px-8 py-4 rounded-3xl border border-white/10 shadow-2xl">
+                <Clock className="w-7 h-7 text-red-500 animate-pulse" />
                 <div className="text-left">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-text-dim">Expira Em:</div>
-                  <div className="text-2xl font-mono font-black text-white">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-text-dim mb-1">Expira Em:</div>
+                  <div className="text-3xl font-mono font-black text-white leading-none">
                     {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                   </div>
                 </div>
@@ -292,8 +292,8 @@ const MainLandingPage = () => {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Conteúdo que para o scroll e segura o espectador — sem você precisar aparecer em nenhum segundo.">
-            COMO CRESCER NO TIKTOK <span className="text-cyan text-glow-cyan">SEM APARECER EM NENHUM VÍDEO</span>
+          <SectionTitle subtitle="Sabe aqueles perfis que explodem em visualizações sem nunca mostrar o rosto? Eles usam exatamente esse tipo de conteúdo. Vídeos que prendem a atenção do início ao fim e foram feitos para segurar o espectador.">
+             O SEGREDO DOS MAIORES <span className="text-cyan text-glow-cyan">PERFIS DARK DO TIKTOK</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -305,7 +305,7 @@ const MainLandingPage = () => {
 
           <div className="mt-16 md:mt-24 text-center">
             <p className="text-xl md:text-3xl font-medium text-gray-400 leading-relaxed max-w-4xl mx-auto px-4">
-              Muitos criadores utilizam esses conteúdos para estratégias de divulgação nos Stories e na Bio. Tudo isso sem precisar aparecer, utilizando <span className="text-accent font-black">cortes temáticos</span> prontos para facilitar seu processo.
+              Cansado de baixar vídeos aleatórios e ver sua conta ser ignorada? Chega de perder tempo tentando descobrir o que funciona sozinho. <span className="text-accent font-black">Use o que já foi testado</span> para aumentar sua consistência e alcance sem precisar de uma câmera ou habilidades de edição.
             </p>
           </div>
         </div>
@@ -314,8 +314,8 @@ const MainLandingPage = () => {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="5.000+ vídeos prontos, organizados por nicho — é só escolher e postar.">
-            O QUE VOCÊ VAI RECEBER
+          <SectionTitle subtitle="Esqueça a bagunça dos packs gratuitos e desorganizados da internet. Aqui você tem acesso a uma biblioteca em alta definição, categorizada para que você encontre o que precisa em segundos. É só escolher, baixar e postar.">
+            UMA BIBLIOTECA COMPLETA DE VÍDEOS LUCRATIVOS
           </SectionTitle>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -362,13 +362,13 @@ const MainLandingPage = () => {
       {/* --- How it Works --- */}
       <section className="py-24 md:py-40 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle>COMO FUNCIONA?</SectionTitle>
+          <SectionTitle>DO ZERO AO PERFIL ATIVO EM 4 PASSOS SIMPLES</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Crie o Perfil", desc: "Monte sua conta de nicho no TikTok em menos de 5 minutos." },
-              { icon: <Play className="w-10 h-10" />, title: "Escolha os Vídeos", desc: "Selecione os vídeos com maior potencial de engajamento no seu nicho escolhido." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste sem Gravar", desc: "Mantenha a consistência postando vídeos de alta retenção sem aparecer." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Cresça na Bio", desc: "Direcione sua audiência para o link da bio e aumente seu alcance organicamente." }
+              { icon: <Users className="w-10 h-10" />, title: "Defina seu Nicho", desc: "Mesmo que você esteja começando hoje, escolha um dos nichos lucrativos que já entregamos prontos." },
+              { icon: <Play className="w-10 h-10" />, title: "Selecione os Cortes", desc: "Encontrou o nicho? Agora é só escolher entre os milhares de vídeos de alta retenção que separamos para você." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste com Consistência", desc: "O segredo do crescimento é a frequência. Poste diariamente sem precisar gravar nada ou passar horas editando." },
+              { icon: <DollarSign className="w-10 h-10" />, title: "Construa sua Audiência", desc: "Transforme a atenção em resultados. Direcione seu tráfego para onde você quiser e veja seu perfil finalmente crescer." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -392,7 +392,7 @@ const MainLandingPage = () => {
       {/* --- Testimonials --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/10">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle>QUEM JÁ UTILIZA O PACKLANDIA</SectionTitle>
+          <SectionTitle>RESULTADOS REAIS DE QUEM PAROU DE PROCRASTINAR</SectionTitle>
           <Carousel images={[
             "https://packlandia.com/wp-content/uploads/2025/09/10-1.jpg.webp",
             "https://packlandia.com/wp-content/uploads/2025/09/9.jpg.webp",
@@ -406,7 +406,7 @@ const MainLandingPage = () => {
       {/* --- Bonus Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Ao garantir seu acesso hoje, você leva esses bônus exclusivos.">PRESENTES EXCLUSIVOS (BÔNUS)</SectionTitle>
+          <SectionTitle subtitle="Para garantir que você não tenha mais nenhuma desculpa para não começar hoje, adicionamos ferramentas que facilitam ainda mais sua jornada.">SÓ HOJE: VOCÊ LEVA TUDO ISSO DE PRESENTE</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { title: "Pack Memes", desc: "Mais de 1000 memes para facilitar suas edições.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
@@ -430,46 +430,48 @@ const MainLandingPage = () => {
       </section>
 
       {/* --- Final Offer --- */}
-      <section className="py-32 md:py-56 px-4 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-20 blur-[180px]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent rounded-full" />
+      <section className="py-40 md:py-64 px-6 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-25 blur-[200px]">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-accent/40 rounded-full" />
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-surface/60 backdrop-blur-3xl p-10 md:p-24 rounded-[60px] border-2 border-accent/40 shadow-[0_0_100px_rgba(57,255,20,0.2)] text-center relative"
+            className="bg-surface/70 backdrop-blur-3xl p-12 md:p-32 rounded-[80px] border-2 border-accent/40 shadow-[0_0_120px_rgba(57,255,20,0.25)] text-center relative"
           >
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-4 w-full px-4">
-              <div className="bg-accent text-white px-8 py-2.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest shadow-neon-accent">OFERTA LIMITADA</div>
-              <div className="bg-cyan text-white px-8 py-2.5 rounded-full text-[10px] md:text-xs font-black uppercase tracking-widest shadow-neon-cyan">ACESSO IMEDIATO</div>
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex flex-wrap justify-center gap-6 w-full px-6">
+              <div className="bg-accent text-white px-10 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-neon-accent">OFERTA LIMITADA</div>
+              <div className="bg-cyan text-white px-10 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-neon-cyan">ACESSO IMEDIATO</div>
             </div>
 
-            <Gift className="w-24 h-24 text-accent mx-auto mb-10 animate-float" />
-            <h2 className="text-4xl md:text-8xl font-sans font-black mb-10 tracking-tighter uppercase leading-none">OFERTA <span className="text-accent">ESPECIAL</span></h2>
+            <Gift className="w-28 h-28 text-accent mx-auto mb-12 animate-float" />
+            <h2 className="text-5xl md:text-9xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.8] transition-all">A HORA DA <span className="text-accent">DECISÃO</span></h2>
             
-            <div className="flex flex-col items-center mb-16">
-              <span className="text-text-dim line-through text-2xl md:text-3xl mb-4">DE R$ 99,99</span>
-              <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                <span className="text-3xl md:text-4xl font-black uppercase tracking-tight">POR APENAS</span>
-                <span className="text-8xl md:text-[160px] font-sans font-black text-cyan text-glow-cyan leading-none">R$ 19,90</span>
+            <div className="flex flex-col items-center mb-20">
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                <div className="flex flex-col items-center md:items-end">
+                  <span className="text-text-dim line-through text-2xl md:text-4xl mb-2 font-bold tracking-tight">DE R$ 99,99</span>
+                  <span className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white/90">POR APENAS</span>
+                </div>
+                <span className="text-9xl md:text-[200px] font-sans font-black text-cyan text-glow-cyan leading-none drop-shadow-2xl">R$ 19,90</span>
               </div>
-              <div className="mt-10 flex items-center gap-3 text-green-400 font-black uppercase tracking-widest bg-green-500/10 px-8 py-3 rounded-full border border-green-500/20 text-sm">
-                <Zap className="w-5 h-5 fill-current" />
-                PAGAMENTO ÚNICO - ACESSO VITALÍCIO
+              <div className="mt-14 flex items-center gap-4 text-green-400 font-black uppercase tracking-widest bg-green-500/10 px-10 py-4 rounded-full border border-green-500/30 text-sm md:text-base">
+                <Zap className="w-6 h-6 fill-current" />
+                ACESSO VITALÍCIO — COMECE HOJE MESMO
               </div>
             </div>
 
-            <Button href={checkoutLink} className="text-2xl md:text-4xl px-16 py-8 md:py-12 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
-              GARANTIR ACESSO AGORA
+            <Button href={checkoutLink} className="text-3xl md:text-5xl px-20 py-10 md:py-14 w-full shadow-[0_0_80px_rgba(57,255,20,0.4)] rounded-[40px]">
+              QUERO MEUS VÍDEOS AGORA
             </Button>
 
-            <div className="mt-16 flex flex-col items-center gap-10">
-              <div className="flex items-center gap-4 text-red-500 font-black uppercase tracking-widest animate-pulse text-sm md:text-lg">
-                <AlertTriangle className="w-6 h-6 md:w-8 md:h-8" />
-                OFERTA POR TEMPO LIMITADO: ÚLTIMAS UNIDADES
+            <div className="mt-20 flex flex-col items-center gap-12">
+              <div className="flex items-center gap-5 text-red-500 font-black uppercase tracking-widest animate-pulse text-base md:text-2xl">
+                <AlertTriangle className="w-8 h-8 md:w-10 md:h-10" />
+                NÃO DEIXE PARA DEPOIS: Se você sair agora, perderá essa condição única.
               </div>
               
               <div className="flex flex-wrap justify-center gap-10 md:gap-16 opacity-80">
@@ -496,13 +498,13 @@ const MainLandingPage = () => {
       {/* --- FAQ --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-5xl mx-auto">
-          <SectionTitle>PERGUNTAS FREQUENTES</SectionTitle>
+          <SectionTitle>TIRE SUAS ÚLTIMAS DÚVIDAS</SectionTitle>
           <div className="space-y-4">
-            <FAQItem question="Preciso aparecer nos vídeos?" answer="Não! O Packlandia foi criado para facilitar a vida de quem quer criar perfis focados em conteúdo de entretenimento e informação. Existem diversas formas de crescer seu perfil sem nunca precisar mostrar o rosto." />
+            <FAQItem question="Preciso aparecer nos vídeos?" answer="Absolutamente não! O Packlandia foi desenhado especificamente para quem quer os benefícios de um perfil grande sem a necessidade de exposição. Você terá em mãos o material que os maiores perfis Dark usam para crescer organicamente." />
             <FAQItem question="Como recebo o acesso?" answer="Imediatamente após a confirmação do pagamento, você receberá um e-mail com todos os dados de acesso à nossa plataforma onde estão organizados todos os vídeos e bônus." />
-            <FAQItem question="Preciso saber editar vídeos?" answer="Não. Os vídeos já estão cortados e prontos para uso. Se desejar personalizar, o processo é simples e pode ser feito pelo celular." />
-            <FAQItem question="O conteúdo é atualizado?" answer="Sim! Nossa equipe busca novos cortes e tendências periodicamente para que você tenha volume constante de conteúdo." />
-            <FAQItem question="Posso usar em quais redes sociais?" answer="Em diversas plataformas! TikTok, Instagram Reels, YouTube Shorts, Kwai... O formato vertical é versátil para vídeos curtos." />
+            <FAQItem question="Preciso saber editar vídeos?" answer="De forma alguma. Os vídeos já estão no formato ideal, cortados e prontos para uso. Se desejar personalizar, o processo é simples e pode ser feito pelo celular em minutos." />
+            <FAQItem question="O conteúdo é atualizado?" answer="Sim! Nossa equipe busca novos cortes e tendências periodicamente para que você tenha um volume constante de conteúdo novo." />
+            <FAQItem question="Posso usar em quais redes sociais?" answer="Em diversas plataformas! TikTok, Instagram Reels, YouTube Shorts, Kwai... O formato vertical de alta retenção funciona em qualquer plataforma de vídeos curtos." />
           </div>
         </div>
       </section>
@@ -560,12 +562,12 @@ const SpecialOfferPage = () => {
   return (
     <div className="min-h-screen bg-bg selection:bg-accent selection:text-white font-sans overflow-x-hidden">
       {/* --- Special Offer Hero --- */}
-      <section className="pt-24 pb-12 px-4 text-center">
+      <section className="pt-32 pb-24 px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-block bg-accent/10 text-accent border border-accent/30 px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest mb-8 shadow-neon-accent"
+            className="inline-block bg-accent/10 text-accent border border-accent/30 px-6 py-2.5 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.25em] mb-10 shadow-neon-accent backdrop-blur-sm"
           >
             🔥 OFERTA DE ÚLTIMA CHANCE
           </motion.div>
@@ -573,27 +575,27 @@ const SpecialOfferPage = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-7xl font-black leading-tight uppercase tracking-tighter mb-6 lg:mb-8"
+            className="text-5xl md:text-8xl font-black leading-[0.85] uppercase tracking-tighter mb-10"
           >
-            🎁 Oferta Especial de Última Chance – <span className="text-accent text-glow-accent">50% OFF</span>
+            ❌ ESPERA! NÃO DESISTA DO SEU <span className="text-accent text-glow-accent">PROJETO AINDA...</span>
           </motion.h1>
 
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl md:text-3xl font-medium text-text-dim mb-4"
+            className="text-xl md:text-3xl font-medium text-text-dim mb-6 leading-relaxed"
           >
-            Você quase saiu… então liberamos algo exclusivo para você.
+            Sabemos que o medo de tentar algo novo e não ter resultados novamente pode acabar paralisando você.
           </motion.p>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-2xl text-text-gray max-w-3xl mx-auto leading-relaxed font-medium"
           >
-            O mesmo produto pela metade do preço da oferta original.
+            Por isso, decidimos remover qualquer barreira financeira para você finalmente começar a postar com consistência.
           </motion.p>
         </div>
       </section>
@@ -607,10 +609,10 @@ const SpecialOfferPage = () => {
             className="bg-surface/30 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-white/5"
           >
             <p className="text-lg md:text-2xl text-text-dim leading-relaxed mb-8">
-              Sim, é isso mesmo. Você sabe quanto custa o valor original. Agora você pode garantir por <span className="text-accent font-black">50% do preço</span> – oferta única, exclusiva e que não estará disponível novamente.
+              Se o seu receio era o investimento, essa é sua <span className="text-accent font-black">última oportunidade</span>. O mesmo conteúdo, os mesmos bônus, mas por um valor simbólico que você não encontrará em nenhum outro lugar.
             </p>
             <p className="text-red-500 font-bold uppercase tracking-widest animate-pulse">
-              Se você recusar aqui, o preço volta ao normal.
+              É pegar ou largar. Se você recusar agora, essa chance morre aqui.
             </p>
           </motion.div>
         </div>
@@ -650,7 +652,7 @@ const SpecialOfferPage = () => {
             </div>
 
             <Button href={checkoutLink} className="text-2xl md:text-4xl px-12 py-8 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
-              🔒 Garantir Agora por 50% do Preço
+              🚀 SIM! QUERO MINHA ÚLTIMA CHANCE
             </Button>
 
             <div className="mt-12 flex flex-col items-center gap-4 bg-black/40 p-6 rounded-3xl border border-white/5">
