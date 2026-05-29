@@ -317,7 +317,7 @@ const MainLandingPage = () => {
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
           <SectionTitle subtitle="Esqueça a bagunça dos packs gratuitos e desorganizados da internet. Aqui você tem acesso a uma biblioteca em alta definição, categorizada para que você encontre o que precisa em segundos. É só escolher, baixar e postar.">
-            UMA BIBLIOTECA COMPLETA DE VÍDEOS LUCRATIVOS
+            UMA BIBLIOTECA COMPLETA DE VÍDEOS PRONTOS PARA POSTAR
           </SectionTitle>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -370,7 +370,7 @@ const MainLandingPage = () => {
               { icon: <Users className="w-10 h-10" />, title: "Defina seu Nicho", desc: "Mesmo que você esteja começando hoje, escolha um dos nichos lucrativos que já entregamos prontos." },
               { icon: <Play className="w-10 h-10" />, title: "Selecione os Cortes", desc: "Encontrou o nicho? Agora é só escolher entre os milhares de vídeos de alta retenção que separamos para você." },
               { icon: <TrendingUp className="w-10 h-10" />, title: "Poste com Consistência", desc: "O segredo do crescimento é a frequência. Poste diariamente sem precisar gravar nada ou passar horas editando." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Construa sua Audiência", desc: "Transforme a atenção em resultados. Direcione seu tráfego para onde você quiser e veja seu perfil finalmente crescer." }
+              { icon: <DollarSign className="w-10 h-10" />, title: "Cresça com Consistência", desc: "Perfis que postam todo dia crescem. Com o pack você nunca mais para por falta de conteúdo." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -452,7 +452,7 @@ const MainLandingPage = () => {
             </div>
 
             <h2 className="text-4xl md:text-7xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.9]">
-              SUA ÚLTIMA CHANCE DE <span className="text-accent">MUDAR O JOGO</span>
+              GARANTA AGORA ANTES QUE O <span className="text-accent">PREÇO VOLTE</span>
             </h2>
             
             <div className="mb-20">
