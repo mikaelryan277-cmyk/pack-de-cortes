@@ -18,6 +18,13 @@
     fbq('init', '1833545720703515');
     fbq('track', 'PageView');
     fbq('track', 'ViewContent');
+    fbq('track', 'Purchase', {
+      value: 19.90,
+      currency: 'BRL',
+      content_ids: ['19,90'],
+      content_type: 'product',
+      contents: [{id: '19,90', quantity: 1}]
+    });
     </script>
     <!-- End Meta Pixel Code -->
 
