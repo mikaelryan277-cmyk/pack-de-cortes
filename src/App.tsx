@@ -79,16 +79,25 @@ const SectionTitle = ({ children, subtitle, className = '', align = 'center' }: 
   </div>
 );
 
-const Carousel = ({ images, autoPlayInterval = 4000 }: { images: string[], autoPlayInterval?: number }) => {
+const Carousel = ({ 
+  images, 
+  slides, 
+  autoPlayInterval = 4000 
+}: { 
+  images?: string[], 
+  slides?: React.ReactNode[], 
+  autoPlayInterval?: number 
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const scrollRef = React.useRef<HTMLDivElement>(null);
+  const itemsCount = slides ? slides.length : (images ? images.length : 0);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || itemsCount === 0) return;
     const interval = setInterval(() => {
       if (scrollRef.current) {
-        const nextIndex = (currentIndex + 1) % images.length;
+        const nextIndex = (currentIndex + 1) % itemsCount;
         scrollRef.current.scrollTo({
           left: scrollRef.current.offsetWidth * nextIndex,
           behavior: 'smooth'
@@ -96,7 +105,7 @@ const Carousel = ({ images, autoPlayInterval = 4000 }: { images: string[], autoP
       }
     }, autoPlayInterval);
     return () => clearInterval(interval);
-  }, [images.length, autoPlayInterval, isPaused, currentIndex]);
+  }, [itemsCount, autoPlayInterval, isPaused, currentIndex]);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
@@ -127,20 +136,30 @@ const Carousel = ({ images, autoPlayInterval = 4000 }: { images: string[], autoP
         className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar rounded-[32px] border border-white/5 shadow-2xl bg-black/20"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
-        {images.map((img, i) => (
-          <div key={i} className="min-w-full h-[300px] md:h-[500px] flex-shrink-0 flex items-center justify-center bg-black/40 select-none snap-center p-4 md:p-8">
-            <img 
-              src={img} 
-              alt={`Slide ${i}`} 
-              className="max-w-full max-h-full object-contain pointer-events-none rounded-2xl shadow-2xl" 
-              referrerPolicy="no-referrer" 
-            />
-          </div>
-        ))}
+        {slides ? (
+          slides.map((slide, i) => (
+            <div key={i} className="min-w-full flex-shrink-0 flex items-center justify-center select-none snap-center p-4 md:p-8">
+              <div className="w-full">
+                {slide}
+              </div>
+            </div>
+          ))
+        ) : (
+          images?.map((img, i) => (
+            <div key={i} className="min-w-full h-[300px] md:h-[500px] flex-shrink-0 flex items-center justify-center bg-black/40 select-none snap-center p-4 md:p-8">
+              <img 
+                src={img} 
+                alt={`Slide ${i}`} 
+                className="max-w-full max-h-full object-contain pointer-events-none rounded-2xl shadow-2xl" 
+                referrerPolicy="no-referrer" 
+              />
+            </div>
+          ))
+        )}
       </div>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-        {images.map((_, i) => (
+        {Array.from({ length: itemsCount }).map((_, i) => (
           <button 
             key={i} 
             onClick={() => goToSlide(i)}
@@ -182,6 +201,49 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  );
+};
+
+const TestimonialCard = ({ 
+  name, 
+  username, 
+  text, 
+  niche, 
+  views 
+}: { 
+  name: string, 
+  username: string, 
+  text: string, 
+  niche: string, 
+  views?: string 
+}) => {
+  return (
+    <div className="bg-surface/30 p-8 md:p-12 rounded-[32px] border border-white/5 max-w-2xl mx-auto text-left relative flex flex-col justify-between h-full backdrop-blur-md">
+      <div>
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center font-black text-accent text-lg border border-accent/20">
+            {name[0]}
+          </div>
+          <div>
+            <h4 className="text-white font-black text-base md:text-lg uppercase tracking-tight">{name}</h4>
+            <p className="text-text-dim text-xs">@{username}</p>
+          </div>
+        </div>
+        <p className="text-white/90 text-base md:text-lg leading-relaxed italic font-medium mb-6">
+          "{text}"
+        </p>
+      </div>
+      <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-white/5">
+        <span className="bg-cyan/10 text-cyan text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-cyan/20">
+          Nicho: {niche}
+        </span>
+        {views && (
+          <span className="bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-accent/20">
+            {views}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
@@ -232,7 +294,7 @@ const MainLandingPage = () => {
               transition={{ delay: 0.1 }}
               className="text-lg md:text-2xl text-text-gray max-w-2xl mb-14 font-medium leading-relaxed mx-auto lg:mx-0"
             >
-              Você sente que o seu tempo está escorrendo pelos dedos? Passa horas olhando para a tela do celular pensando no que postar, gasta sua energia para gravar ou editar e, no fim, é ignorado pelo algoritmo... A verdade é que você está jogando o jogo no modo difícil. Ative o atalho secreto que os maiores perfis usam para reter a atenção do público de forma automática, viciando o cérebro do espectador sem que você precise gravar, aparecer ou falar uma única palavra.
+              Você sente que seu tempo está escorrendo pelos dedos? Passa horas pensando no que postar, gasta energia editando e, no fim, quase ninguém assiste... A verdade é que criar tudo do zero é o jeito mais difícil. Com a nossa biblioteca, você tem vídeos prontos de alta qualidade para postar todos os dias de um jeito muito mais simples. Tudo sem precisar gravar, aparecer ou falar uma única palavra.
             </motion.p>
 
             <motion.div
@@ -294,8 +356,8 @@ const MainLandingPage = () => {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Pare de lutar com as regras antigas. Já percebeu como contas que começaram ontem explodem em visualizações e ganham relevância enquanto seu perfil parece invisível? O segredo deles não é dom natural ou criatividade superior — é o uso obstinado do atalho secreto que perfis dark usam para nunca travar. Imagens e dinâmicas magnéticas que anulam o lado racional do público e transformam visualizações em um fluxo viciante e automático.">
-             A ENGRENAGEM INVISÍVEL DOS <span className="text-cyan text-glow-cyan">PERFIS MAIS DESEJADOS</span>
+          <SectionTitle subtitle="Você já reparou como os perfis grandes sempre têm conteúdo novo e nunca param de postar? O único segredo deles é que eles não perdem tempo criando tudo do zero. Eles usam vídeos prontos, de alta retenção, que já funcionam muito bem. É assim que eles conseguem consistência sem se cansar e sem precisar aparecer.">
+             COMO OS GRANDES PERFIS <span className="text-cyan text-glow-cyan">POSTAM TODOS OS DIAS</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -307,7 +369,7 @@ const MainLandingPage = () => {
 
           <div className="mt-16 md:mt-24 text-center">
             <p className="text-xl md:text-3xl font-medium text-gray-400 leading-relaxed max-w-4xl mx-auto px-4">
-              Chega de implorar pela atenção de pessoas que simplesmente deslizam reto pela sua criação. Quando você ativa esse mecanismo e o padrão exato de retenção que força o cérebro do espectador a assistir até o fim, <span className="text-accent font-black">você assume o controle</span>. Domine de uma vez por todas a inteligência silenciosa do engajamento de alta velocidade.
+              Não precisa quebrar a cabeça tentando inventar moda ou passar horas editando vídeos complicados. <span className="text-accent font-black">É só usar o que já dá certo</span>. Comece a postar hoje mesmo de um jeito muito mais simples.
             </p>
           </div>
         </div>
@@ -316,8 +378,8 @@ const MainLandingPage = () => {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Esqueça a desordem sem sentido que você encontra perdida na internet. Aqui você tem o controle imediato do arsenal visual que causa dopamina compulsiva nos nichos mais cobiçados do mercado vertical. Cada segmento foi lapidado para fisgar e reter o olhar em milésimos de segundo. Basta tocar para carregar as joias secretas e reinar em seu território escolhido.">
-            A MÁQUINA DE ATRAÇÃO AUDIOVISUAL SUPREMA
+          <SectionTitle subtitle="Esqueça a bagunça dos canais gratuitos e grupos desorganizados. Aqui você tem acesso a milhares de vídeos em alta definição, já separados por categorias para você encontrar o que precisa em segundos. É só escolher, baixar e postar.">
+            UMA BIBLIOTECA COMPLETA E ORGANIZADA
           </SectionTitle>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -364,13 +426,12 @@ const MainLandingPage = () => {
        {/* --- How it Works --- */}
       <section className="py-24 md:py-40 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle>O PROTOCOLO INVISÍVEL DO SUCESSO COGNITIVO</SectionTitle>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <SectionTitle>COMO FUNCIONA NA PRÁTICA</SectionTitle>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Defina seu Território", desc: "Sem queimar neurônios. Toque no nicho exato onde os desejos e o vício de consumo do público já estão mapeados." },
-              { icon: <Play className="w-10 h-10" />, title: "Deixe o Atalho Agir", desc: "Use a magia da retenção pura. Encontre sequências construídas unicamente para desarmar limites racionais e cativar olhares." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Alimente a Consistência", desc: "Esqueça gravações exaustivas ou setups caros. Preencha seu canal de forma letal sem demandar 5 minutos do seu dia." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Domine seu Algoritmo", desc: "Veja o tráfego fluir livremente para onde você desejar. Conquiste a notoriedade e o fluxo que você sempre mereceu ter." }
+              { icon: <Users className="w-10 h-10" />, title: "Escolha seu nicho", desc: "Sem complicação. Escolha o tema que você mais gosta entre as opções prontas que já deixamos organizadas para você." },
+              { icon: <Play className="w-10 h-10" />, title: "Escolha seus vídeos", desc: "Basta selecionar na nossa biblioteca os vídeos prontos de alta qualidade para baixar em seu celular." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste todo dia", desc: "Mantenha a consistência postando diariamente de forma rápida, sem precisar aparecer ou falar nada." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -408,13 +469,13 @@ const MainLandingPage = () => {
       {/* --- Bonus Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Ao dar o passo estratégico de hoje, você destrava aceleradores mentais exclusivos para consolidar seu ritmo e esmagar qualquer concorrência residual.">SEU ARSENAL SECRETO DE ACELERAMENTO (PRESENTE ESPECIAL)</SectionTitle>
+          <SectionTitle subtitle="Para facilitar ainda mais o seu início, garantindo seu acesso hoje você também leva, totalmente de graça, estes bônus exclusivos:">BÔNUS EXCLUSIVOS</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Gatilhos Dopaminérgicos", desc: "Ative reações imediatas de afinidade e conexão rápida com reações bem-humoradas prontas.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
-              { title: "Frequências de Alto Foco", desc: "Estímulos de áudio estrategicamente posicionados para sabotar a chance do espectador sair do vídeo.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
-              { title: "Trilhas Sonoras Magnéticas", desc: "Crie a atmosfera subconsciente ideal para viciar os ouvidos e blindar seus canais.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: "A Elite do Algoritmo", desc: "Pertença ao círculo fechado de criadores que trocam tendências ocultas muito antes de virarem moda." }
+              { title: "Pack de Memes Prontos", desc: "Mais de 1.000 memes engraçados e cortes rápidos para deixar seus vídeos muito mais divertidos e dinâmicos.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
+              { title: "Efeitos Sonoros Famosos", desc: "Coleção de efeitos especiais de áudio que os canais de sucesso usam para prender a atenção de quem está assistindo.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
+              { title: "Músicas Sem Direitos Autorais", desc: "Trilhas sonoras de fundo perfeitas e totalmente seguras, liberadas para uso no Instagram e TikTok.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
+              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo VIP de Membros", desc: "Acesso à nossa comunidade exclusiva de criadores de conteúdo para trocar ideias, dicas e novidades." }
             ].map((bonus, i) => (
               <motion.div
                 key={i}
