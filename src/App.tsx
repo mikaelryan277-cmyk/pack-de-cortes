@@ -215,7 +215,7 @@ const MainLandingPage = () => {
               animate={{ opacity: 1, x: 0 }}
               className="bg-accent/10 text-accent border border-accent/30 px-6 py-2.5 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.25em] w-fit mb-10 shadow-neon-accent backdrop-blur-sm mx-auto lg:mx-0"
             >
-              🔥 Para quem cansou de postar e ser ignorado
+              🔥 O ATALHO SECRETO DOS PERFIS QUE DOMINAM O ALGORITMO
             </motion.div>
 
             <motion.h1 
@@ -232,7 +232,7 @@ const MainLandingPage = () => {
               transition={{ delay: 0.1 }}
               className="text-lg md:text-2xl text-text-gray max-w-2xl mb-14 font-medium leading-relaxed mx-auto lg:mx-0"
             >
-              Você já sentiu que perde horas procurando o que postar e, no fim, seu perfil continua parado? O Packlandia entrega tudo pronto: vídeos de alta retenção que os grandes perfis usam para crescer, organizados para você apenas escolher e postar. Chega de tentar crescer sozinho baixando vídeos aleatórios e desorganizados.
+              Você sente que o seu tempo está escorrendo pelos dedos? Passa horas olhando para a tela do celular pensando no que postar, gasta sua energia para gravar ou editar e, no fim, é ignorado pelo algoritmo... A verdade é que você está jogando o jogo no modo difícil. Ative o atalho secreto que os maiores perfis usam para reter a atenção do público de forma automática, viciando o cérebro do espectador sem que você precise gravar, aparecer ou falar uma única palavra.
             </motion.p>
 
             <motion.div
@@ -294,8 +294,8 @@ const MainLandingPage = () => {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Sabe aqueles perfis que explodem em visualizações sem nunca mostrar o rosto? Eles usam exatamente esse tipo de conteúdo. Vídeos que prendem a atenção do início ao fim e foram feitos para segurar o espectador.">
-             O SEGREDO DOS MAIORES <span className="text-cyan text-glow-cyan">PERFIS DARK DO TIKTOK</span>
+          <SectionTitle subtitle="Pare de lutar com as regras antigas. Já percebeu como contas que começaram ontem explodem em visualizações e ganham relevância enquanto seu perfil parece invisível? O segredo deles não é dom natural ou criatividade superior — é o uso obstinado do atalho secreto que perfis dark usam para nunca travar. Imagens e dinâmicas magnéticas que anulam o lado racional do público e transformam visualizações em um fluxo viciante e automático.">
+             A ENGRENAGEM INVISÍVEL DOS <span className="text-cyan text-glow-cyan">PERFIS MAIS DESEJADOS</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -307,7 +307,7 @@ const MainLandingPage = () => {
 
           <div className="mt-16 md:mt-24 text-center">
             <p className="text-xl md:text-3xl font-medium text-gray-400 leading-relaxed max-w-4xl mx-auto px-4">
-              Cansado de baixar vídeos aleatórios e ver sua conta ser ignorada? Chega de perder tempo tentando descobrir o que funciona sozinho. <span className="text-accent font-black">Use o que já foi testado</span> para aumentar sua consistência e alcance sem precisar de uma câmera ou habilidades de edição.
+              Chega de implorar pela atenção de pessoas que simplesmente deslizam reto pela sua criação. Quando você ativa esse mecanismo e o padrão exato de retenção que força o cérebro do espectador a assistir até o fim, <span className="text-accent font-black">você assume o controle</span>. Domine de uma vez por todas a inteligência silenciosa do engajamento de alta velocidade.
             </p>
           </div>
         </div>
@@ -316,8 +316,8 @@ const MainLandingPage = () => {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Esqueça a bagunça dos packs gratuitos e desorganizados da internet. Aqui você tem acesso a uma biblioteca em alta definição, categorizada para que você encontre o que precisa em segundos. É só escolher, baixar e postar.">
-            UMA BIBLIOTECA COMPLETA DE VÍDEOS PRONTOS PARA POSTAR
+          <SectionTitle subtitle="Esqueça a desordem sem sentido que você encontra perdida na internet. Aqui você tem o controle imediato do arsenal visual que causa dopamina compulsiva nos nichos mais cobiçados do mercado vertical. Cada segmento foi lapidado para fisgar e reter o olhar em milésimos de segundo. Basta tocar para carregar as joias secretas e reinar em seu território escolhido.">
+            A MÁQUINA DE ATRAÇÃO AUDIOVISUAL SUPREMA
           </SectionTitle>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -361,16 +361,16 @@ const MainLandingPage = () => {
         </div>
       </section>
 
-      {/* --- How it Works --- */}
+       {/* --- How it Works --- */}
       <section className="py-24 md:py-40 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle>DO ZERO AO PERFIL ATIVO EM 4 PASSOS SIMPLES</SectionTitle>
+          <SectionTitle>O PROTOCOLO INVISÍVEL DO SUCESSO COGNITIVO</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Defina seu Nicho", desc: "Mesmo que você esteja começando hoje, escolha um dos nichos lucrativos que já entregamos prontos." },
-              { icon: <Play className="w-10 h-10" />, title: "Selecione os Cortes", desc: "Encontrou o nicho? Agora é só escolher entre os milhares de vídeos de alta retenção que separamos para você." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste com Consistência", desc: "O segredo do crescimento é a frequência. Poste diariamente sem precisar gravar nada ou passar horas editando." },
-              { icon: <DollarSign className="w-10 h-10" />, title: "Cresça com Consistência", desc: "Perfis que postam todo dia crescem. Com o pack você nunca mais para por falta de conteúdo." }
+              { icon: <Users className="w-10 h-10" />, title: "Defina seu Território", desc: "Sem queimar neurônios. Toque no nicho exato onde os desejos e o vício de consumo do público já estão mapeados." },
+              { icon: <Play className="w-10 h-10" />, title: "Deixe o Atalho Agir", desc: "Use a magia da retenção pura. Encontre sequências construídas unicamente para desarmar limites racionais e cativar olhares." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Alimente a Consistência", desc: "Esqueça gravações exaustivas ou setups caros. Preencha seu canal de forma letal sem demandar 5 minutos do seu dia." },
+              { icon: <DollarSign className="w-10 h-10" />, title: "Domine seu Algoritmo", desc: "Veja o tráfego fluir livremente para onde você desejar. Conquiste a notoriedade e o fluxo que você sempre mereceu ter." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -394,7 +394,7 @@ const MainLandingPage = () => {
       {/* --- Testimonials --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/10">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle>RESULTADOS REAIS DE QUEM PAROU DE PROCRASTINAR</SectionTitle>
+          <SectionTitle>A PROVA VIVA DA LIBERTAÇÃO DA TELA EM BRANCO</SectionTitle>
           <Carousel images={[
             "https://packlandia.com/wp-content/uploads/2025/09/10-1.jpg.webp",
             "https://packlandia.com/wp-content/uploads/2025/09/9.jpg.webp",
@@ -408,13 +408,13 @@ const MainLandingPage = () => {
       {/* --- Bonus Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Para garantir que você não tenha mais nenhuma desculpa para não começar hoje, adicionamos ferramentas que facilitam ainda mais sua jornada.">SÓ HOJE: VOCÊ LEVA TUDO ISSO DE PRESENTE</SectionTitle>
+          <SectionTitle subtitle="Ao dar o passo estratégico de hoje, você destrava aceleradores mentais exclusivos para consolidar seu ritmo e esmagar qualquer concorrência residual.">SEU ARSENAL SECRETO DE ACELERAMENTO (PRESENTE ESPECIAL)</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Pack Memes", desc: "Mais de 1000 memes para facilitar suas edições.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
-              { title: "Efeitos Sonoros", desc: "SFX profissionais para auxiliar na retenção.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
-              { title: "Músicas Sem Copyright", desc: "Trilhas sonoras seguras para seus projetos.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo Exclusivo", desc: "Acesse conteúdo novo toda semana e tire dúvidas com quem já está postando e crescendo." }
+              { title: "Gatilhos Dopaminérgicos", desc: "Ative reações imediatas de afinidade e conexão rápida com reações bem-humoradas prontas.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
+              { title: "Frequências de Alto Foco", desc: "Estímulos de áudio estrategicamente posicionados para sabotar a chance do espectador sair do vídeo.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
+              { title: "Trilhas Sonoras Magnéticas", desc: "Crie a atmosfera subconsciente ideal para viciar os ouvidos e blindar seus canais.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
+              { icon: <Users className="w-10 h-10 text-accent" />, title: "A Elite do Algoritmo", desc: "Pertença ao círculo fechado de criadores que trocam tendências ocultas muito antes de virarem moda." }
             ].map((bonus, i) => (
               <motion.div
                 key={i}
@@ -452,7 +452,7 @@ const MainLandingPage = () => {
             </div>
 
             <h2 className="text-4xl md:text-7xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.9]">
-              GARANTA AGORA ANTES QUE O <span className="text-accent">PREÇO VOLTE</span>
+              GARANTA SEU LUGAR NO GRUPO DE <span className="text-accent">QUEM REALMENTE DOMINA</span>
             </h2>
             
             <div className="mb-20">
@@ -464,7 +464,7 @@ const MainLandingPage = () => {
                 </div>
               </div>
               <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/5 rounded-xl border border-white/10 text-[10px] md:text-xs font-bold text-text-dim uppercase tracking-widest">
-                Acesso Vitalício + Todos os Bônus Inclusos
+                Sua Nova Vida Sem Bloqueio Criativo Começa Agora
               </div>
             </div>
 
@@ -568,7 +568,7 @@ const SpecialOfferPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block bg-accent/10 text-accent border border-accent/30 px-6 py-2.5 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.25em] mb-10 shadow-neon-accent backdrop-blur-sm"
           >
-            🔥 OFERTA DE ÚLTIMA CHANCE
+            🔥 UMA ÚLTIMA TENTATIVA DE SEGURAR VOCÊ
           </motion.div>
           
           <motion.h1 
@@ -576,7 +576,7 @@ const SpecialOfferPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-8xl font-black leading-[0.85] uppercase tracking-tighter mb-10"
           >
-            ❌ ESPERA! NÃO DESISTA DO SEU <span className="text-accent text-glow-accent">PROJETO AINDA...</span>
+            ❌ NÃO PERMITA QUE A PARALISIA <span className="text-accent text-glow-accent">ABAFE SUAS METAS</span>
           </motion.h1>
 
           <motion.p 
@@ -585,7 +585,7 @@ const SpecialOfferPage = () => {
             transition={{ delay: 0.1 }}
             className="text-xl md:text-3xl font-medium text-text-dim mb-6 leading-relaxed"
           >
-            Sabemos que o medo de tentar algo novo e não ter resultados novamente pode acabar paralisando você.
+            Nós sabemos o quão frustrante é tentar algo novo e logo recuar pelo medo de gastar tempo sem obter o retorno desejado.
           </motion.p>
           
           <motion.p 
@@ -594,7 +594,7 @@ const SpecialOfferPage = () => {
             transition={{ delay: 0.2 }}
             className="text-lg md:text-2xl text-text-gray max-w-3xl mx-auto leading-relaxed font-medium"
           >
-            Por isso, decidimos remover qualquer barreira financeira para você finalmente começar a postar com consistência.
+            Por essa razão concreta, removemos o absoluto último degrau que impedia sua consistência e impulsionava sua hesitação.
           </motion.p>
         </div>
       </section>
@@ -608,10 +608,10 @@ const SpecialOfferPage = () => {
             className="bg-surface/30 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-white/5"
           >
             <p className="text-lg md:text-2xl text-text-dim leading-relaxed mb-8">
-              Se o seu receio era o investimento, essa é sua <span className="text-accent font-black">última oportunidade</span>. O mesmo conteúdo, os mesmos bônus, mas por um valor simbólico que você não encontrará em nenhum outro lugar.
+              Se o seu entrave era a barreira do investimento, esta é a sua <span className="text-accent font-black">chance final do destino</span>. O exato arsenal premium, os mesmos multiplicadores e ferramentas secretas, reduzidos a um valor irrisório que nunca mais se repetirá.
             </p>
             <p className="text-red-500 font-bold uppercase tracking-widest animate-pulse">
-              É pegar ou largar. Se você recusar agora, essa chance morre aqui.
+              É pegar ou recuar para sempre. Escolha agora ou viva com a eterna dúvida sobre onde seu perfil poderia ter chegado.
             </p>
           </motion.div>
         </div>
@@ -631,17 +631,17 @@ const SpecialOfferPage = () => {
 
             <div className="mb-12">
               <span className="text-3xl md:text-5xl font-black text-cyan text-glow-cyan leading-none block mb-4 uppercase">
-                Metade da oferta original
+                Metade da barreira original
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 text-left max-w-lg mx-auto">
               {[
-                "Acesso imediato",
-                "Mesmos bônus inclusos",
-                "Mesma entrega automática",
-                "Tudo igual à oferta original",
-                "Diferença: preço reduzido pela metade"
+                "Acesso instantâneo sem burocracia",
+                "Absolutamente todos os bônus ativos",
+                "Entrega imediata no seu e-mail",
+                "Segurança e risco financeiro nulo",
+                "Sua liberdade criativa garantida"
               ].map((benefit, i) => (
                 <div key={i} className="flex items-center gap-3 text-sm font-bold uppercase tracking-tight text-white/80">
                   <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0" />
