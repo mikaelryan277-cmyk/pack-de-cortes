@@ -749,15 +749,6 @@ const SpecialOfferPage = () => {
 };
 
 const ThankYouPage = () => {
-  useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'Purchase', {
-        value: 19.90,
-        currency: 'BRL'
-      });
-    }
-  }, []);
-
   return (
     <div className="min-h-screen bg-bg flex items-center justify-center px-4 font-sans text-center">
       <div className="max-w-2xl bg-surface/40 backdrop-blur-xl p-10 md:p-16 rounded-[40px] border border-white/10 shadow-2xl">
