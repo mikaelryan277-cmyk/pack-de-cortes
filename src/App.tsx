@@ -463,9 +463,6 @@ const MainLandingPage = () => {
               </motion.div>
             ))}
           </div>
-          <div className="mt-20 text-center">
-            <CTAButton />
-          </div>
         </div>
       </section>
 
