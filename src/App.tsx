@@ -60,7 +60,7 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
 };
 
 const CTAButton = ({ className = '' }: { className?: string }) => (
-  <Button href={CHECKOUT_LINK} className={className}>
+  <Button href={CHECKOUT_LINK} className={`text-lg md:text-xl px-12 md:px-16 ${className}`}>
     GARANTIR ACESSO AGORA
   </Button>
 );
