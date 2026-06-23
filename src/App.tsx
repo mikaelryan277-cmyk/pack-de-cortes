@@ -28,6 +28,10 @@ import {
   MessageSquare
 } from 'lucide-react';
 
+/// --- Constants ---
+
+const CHECKOUT_LINK = "https://ggcheckout.app/checkout/v4/pjsYjLZHMbzBEtJlizlc";
+
 /// --- Components ---
 
 const Button = ({ children, className = '', onClick, href }: { children: React.ReactNode, className?: string, onClick?: () => void, href?: string }) => {
@@ -54,6 +58,12 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
   }
   return content;
 };
+
+const CTAButton = ({ className = '' }: { className?: string }) => (
+  <Button href={CHECKOUT_LINK} className={className}>
+    GARANTIR ACESSO AGORA
+  </Button>
+);
 
 const SectionTitle = ({ children, subtitle, className = '', align = 'center' }: { children: React.ReactNode, subtitle?: string, className?: string, align?: 'center' | 'left' }) => (
   <div className={`mb-16 md:mb-24 ${align === 'center' ? 'text-center' : 'text-left'} ${className}`}>
@@ -264,8 +274,6 @@ const MainLandingPage = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const checkoutLink = "https://ggcheckout.app/checkout/v4/pjsYjLZHMbzBEtJlizlc";
-
   return (
     <div className="min-h-screen bg-bg selection:bg-accent selection:text-white">
       {/* --- Hero Section --- */}
@@ -285,7 +293,7 @@ const MainLandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl lg:text-9xl font-sans font-black leading-[0.8] tracking-tighter uppercase mb-10"
             >
-              PARE DE TRAVAR NA HORA DE POSTAR
+              Cresça no Instagram <span className="text-accent text-glow-accent">Sem Gravar Vídeos</span>
             </motion.h1>
 
             <motion.p 
@@ -294,7 +302,7 @@ const MainLandingPage = () => {
               transition={{ delay: 0.1 }}
               className="text-lg md:text-2xl text-text-gray max-w-2xl mb-14 font-medium leading-relaxed mx-auto lg:mx-0"
             >
-              Você sente que seu tempo está escorrendo pelos dedos? Passa horas pensando no que postar, gasta energia editando e, no fim, quase ninguém assiste... A verdade é que criar tudo do zero é o jeito mais difícil. Com a nossa biblioteca, você tem vídeos prontos de alta qualidade para postar todos os dias de um jeito muito mais simples. Tudo sem precisar gravar, aparecer ou falar uma única palavra.
+              Poste vídeos prontos de alta retenção e ganhe seguidores. Comece hoje por apenas R$ 19,90.
             </motion.p>
 
             <motion.div
@@ -303,9 +311,7 @@ const MainLandingPage = () => {
               transition={{ delay: 0.2 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8"
             >
-              <Button href={checkoutLink} className="text-xl md:text-2xl w-full sm:w-auto">
-                GARANTIR ACESSO AGORA
-              </Button>
+              <CTAButton className="text-xl md:text-2xl w-full sm:w-auto" />
 
               <div className="flex items-center gap-5 bg-white/5 backdrop-blur-md px-8 py-4 rounded-3xl border border-white/10 shadow-2xl">
                 <Clock className="w-7 h-7 text-red-500 animate-pulse" />
@@ -356,8 +362,8 @@ const MainLandingPage = () => {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Você já reparou como os perfis grandes sempre têm conteúdo novo e nunca param de postar? O único segredo deles é que eles não perdem tempo criando tudo do zero. Eles usam vídeos prontos, de alta retenção, que já funcionam muito bem. É assim que eles conseguem consistência sem se cansar e sem precisar aparecer.">
-             COMO OS GRANDES PERFIS <span className="text-cyan text-glow-cyan">POSTAM TODOS OS DIAS</span>
+          <SectionTitle subtitle="Perfis gigantes postam todo dia usando vídeos prontos. Copie o que já funciona e cresça sem esforço.">
+             O SEGREDO DOS <span className="text-cyan text-glow-cyan">PERFIS QUE EXPLODEM</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -367,9 +373,13 @@ const MainLandingPage = () => {
             "https://packlandia.com/wp-content/uploads/2025/09/38-scaled.jpg-1024x576.webp"
           ]} />
 
+          <div className="mt-16 text-center">
+            <CTAButton />
+          </div>
+
           <div className="mt-16 md:mt-24 text-center">
             <p className="text-xl md:text-3xl font-medium text-gray-400 leading-relaxed max-w-4xl mx-auto px-4">
-              Não precisa quebrar a cabeça tentando inventar moda ou passar horas editando vídeos complicados. <span className="text-accent font-black">É só usar o que já dá certo</span>. Comece a postar hoje mesmo de um jeito muito mais simples.
+              Pare de perder tempo editando. <span className="text-accent font-black">Use vídeos testados</span> para dominar o algoritmo hoje mesmo.
             </p>
           </div>
         </div>
@@ -378,8 +388,8 @@ const MainLandingPage = () => {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Esqueça a bagunça dos canais gratuitos e grupos desorganizados. Aqui você tem acesso a milhares de vídeos em alta definição, já separados por categorias para você encontrar o que precisa em segundos. É só escolher, baixar e postar.">
-            UMA BIBLIOTECA COMPLETA E ORGANIZADA
+          <SectionTitle subtitle="Acesso imediato a milhares de vídeos em HD. Escolha seu nicho, baixe e poste em segundos.">
+            BIBLIOTECA COMPLETA E PRONTA
           </SectionTitle>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -420,18 +430,22 @@ const MainLandingPage = () => {
               </motion.div>
             ))}
           </div>
+          <div className="mt-16 text-center">
+            <CTAButton />
+          </div>
+
         </div>
       </section>
 
        {/* --- How it Works --- */}
       <section className="py-24 md:py-40 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle>COMO FUNCIONA NA PRÁTICA</SectionTitle>
+          <SectionTitle>PASSO A PASSO SIMPLES</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Escolha seu nicho", desc: "Sem complicação. Escolha o tema que você mais gosta entre as opções prontas que já deixamos organizadas para você." },
-              { icon: <Play className="w-10 h-10" />, title: "Escolha seus vídeos", desc: "Basta selecionar na nossa biblioteca os vídeos prontos de alta qualidade para baixar em seu celular." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste todo dia", desc: "Mantenha a consistência postando diariamente de forma rápida, sem precisar aparecer ou falar nada." }
+              { icon: <Users className="w-10 h-10" />, title: "Escolha seu nicho", desc: "Selecione o tema que você quer crescer entre as opções prontas." },
+              { icon: <Play className="w-10 h-10" />, title: "Baixe os vídeos", desc: "Selecione os melhores vídeos da nossa biblioteca HD direto no seu celular." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste e cresça", desc: "Mantenha a frequência postando em segundos, sem precisar aparecer." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -449,6 +463,9 @@ const MainLandingPage = () => {
               </motion.div>
             ))}
           </div>
+          <div className="mt-20 text-center">
+            <CTAButton />
+          </div>
         </div>
       </section>
 
@@ -463,19 +480,22 @@ const MainLandingPage = () => {
             "https://packlandia.com/wp-content/uploads/2025/09/12-1.jpg.webp",
             "https://packlandia.com/wp-content/uploads/2025/09/11-2.jpg.webp"
           ]} />
+          <div className="mt-20 text-center">
+            <CTAButton />
+          </div>
         </div>
       </section>
 
       {/* --- Bonus Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Para facilitar ainda mais o seu início, garantindo seu acesso hoje você também leva, totalmente de graça, estes bônus exclusivos:">BÔNUS EXCLUSIVOS</SectionTitle>
+          <SectionTitle subtitle="Garantindo seu acesso hoje, você recebe gratuitamente este arsenal exclusivo para acelerar seus resultados:">BÔNUS EXCLUSIVOS</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Pack de Memes Prontos", desc: "Mais de 1.000 memes engraçados e cortes rápidos para deixar seus vídeos muito mais divertidos e dinâmicos.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
-              { title: "Efeitos Sonoros Famosos", desc: "Coleção de efeitos especiais de áudio que os canais de sucesso usam para prender a atenção de quem está assistindo.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
-              { title: "Músicas Sem Direitos Autorais", desc: "Trilhas sonoras de fundo perfeitas e totalmente seguras, liberadas para uso no Instagram e TikTok.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo VIP de Membros", desc: "Acesso à nossa comunidade exclusiva de criadores de conteúdo para trocar ideias, dicas e novidades." }
+              { title: "Pack de Memes", desc: "Mais de 1.000 memes e cortes rápidos para vídeos divertidos.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
+              { title: "Efeitos Sonoros", desc: "Os áudios que os grandes canais usam para prender a atenção.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
+              { title: "Músicas Sem Copyright", desc: "Trilhas sonoras seguras para Instagram e TikTok.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
+              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo VIP", desc: "Comunidade exclusiva para trocar dicas e ver o que está bombando." }
             ].map((bonus, i) => (
               <motion.div
                 key={i}
@@ -513,24 +533,24 @@ const MainLandingPage = () => {
             </div>
 
             <h2 className="text-4xl md:text-7xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.9]">
-              GARANTA SEU LUGAR NO GRUPO DE <span className="text-accent">QUEM REALMENTE DOMINA</span>
+              ACESSO IMEDIATO <span className="text-accent">POR R$ 19,90</span>
             </h2>
             
             <div className="mb-20">
               <div className="flex flex-col items-center gap-2 mb-8">
-                <span className="text-text-dim/60 line-through text-xl md:text-2xl font-bold">DE R$ 99,90</span>
+                <span className="text-text-dim/60 line-through text-xl md:text-2xl font-bold uppercase tracking-widest">DE R$ 99,90</span>
                 <div className="flex flex-col md:flex-row items-center md:items-baseline gap-2">
-                  <span className="text-2xl md:text-3xl font-black text-white/80">POR APENAS</span>
+                  <span className="text-2xl md:text-3xl font-black text-white/80">HOJE POR APENAS</span>
                   <span className="text-7xl md:text-9xl font-sans font-black text-white leading-none">R$ 19,90</span>
                 </div>
               </div>
               <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/5 rounded-xl border border-white/10 text-[10px] md:text-xs font-bold text-text-dim uppercase tracking-widest">
-                Sua Nova Vida Sem Bloqueio Criativo Começa Agora
+                VITALÍCIO + BÔNUS INCLUSOS
               </div>
             </div>
 
             <Button 
-              href={checkoutLink} 
+              href={CHECKOUT_LINK} 
               className="text-2xl md:text-3xl px-16 py-8 md:py-10 w-full rounded-2xl shadow-none animate-none hover:shadow-[0_0_40px_rgba(57,255,20,0.2)] transition-all bg-accent hover:bg-accent/90"
             >
               GARANTIR ACESSO AGORA
@@ -560,11 +580,11 @@ const MainLandingPage = () => {
         <div className="max-w-5xl mx-auto">
           <SectionTitle>TIRE SUAS ÚLTIMAS DÚVIDAS</SectionTitle>
           <div className="space-y-4">
-            <FAQItem question="Preciso aparecer nos vídeos?" answer="Absolutamente não! O Packlandia foi desenhado especificamente para quem quer os benefícios de um perfil grande sem a necessidade de exposição. Você terá em mãos o material que os maiores perfis Dark usam para crescer organicamente." />
-            <FAQItem question="Como recebo o acesso?" answer="Imediatamente após a confirmação do pagamento, você receberá um e-mail com todos os dados de acesso à nossa plataforma onde estão organizados todos os vídeos e bônus." />
-            <FAQItem question="Preciso saber editar vídeos?" answer="De forma alguma. Os vídeos já estão no formato ideal, cortados e prontos para uso. Se desejar personalizar, o processo é simples e pode ser feito pelo celular em minutos." />
-            <FAQItem question="O conteúdo é atualizado?" answer="Sim! Nossa equipe busca novos cortes e tendências periodicamente para que você tenha um volume constante de conteúdo novo." />
-            <FAQItem question="Posso usar em quais redes sociais?" answer="Em diversas plataformas! TikTok, Instagram Reels, YouTube Shorts, Kwai... O formato vertical de alta retenção funciona em qualquer plataforma de vídeos curtos." />
+            <FAQItem question="Preciso aparecer?" answer="Não. O Packlandia é focado em perfis que não precisam mostrar o rosto." />
+            <FAQItem question="Como recebo o acesso?" answer="Imediatamente por e-mail após a confirmação do pagamento." />
+            <FAQItem question="É difícil editar?" answer="Não. Os vídeos já estão cortados e prontos para postar direto do celular." />
+            <FAQItem question="O conteúdo é atualizado?" answer="Sim, adicionamos novos vídeos e tendências constantemente." />
+            <FAQItem question="Funciona em quais redes?" answer="Instagram, TikTok, YouTube Shorts e qualquer plataforma de vídeos curtos." />
           </div>
         </div>
       </section>
