@@ -36,7 +36,8 @@ const CHECKOUT_LINK = "https://ggcheckout.app/checkout/v4/pjsYjLZHMbzBEtJlizlc";
 
 const Button = ({ children, className = '', onClick, href }: { children: React.ReactNode, className?: string, onClick?: () => void, href?: string }) => {
   const handleClick = () => {
-    if (href && typeof window !== 'undefined' && (window as any).fbq) {
+    const isCheckoutLink = href && (href.includes('ggcheckout.app') || href.includes('checkout'));
+    if (isCheckoutLink && typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'InitiateCheckout');
     }
     if (onClick) onClick();
@@ -46,7 +47,7 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      onClick={handleClick}
+      onClick={!href ? handleClick : undefined}
       className={`bg-accent hover:bg-accent/90 text-white font-sans font-black py-5 md:py-6 px-8 md:px-12 rounded-2xl transition-all duration-300 shadow-neon-accent animate-pulse-soft uppercase tracking-tighter text-center leading-none ${className}`}
     >
       {children}
@@ -60,9 +61,14 @@ const Button = ({ children, className = '', onClick, href }: { children: React.R
 };
 
 const CTAButton = ({ className = '' }: { className?: string }) => (
-  <Button href={CHECKOUT_LINK} className={`text-2xl md:text-4xl px-16 md:px-28 py-8 md:py-12 ${className}`}>
-    GARANTIR ACESSO AGORA
-  </Button>
+  <div className="flex flex-col items-center gap-3">
+    <Button href={CHECKOUT_LINK} className={`text-2xl md:text-4xl px-16 md:px-28 py-8 md:py-12 ${className}`}>
+      QUERO ACESSO AGORA
+    </Button>
+    <p className="text-[10px] md:text-xs text-text-gray font-medium uppercase tracking-wider opacity-60">
+      🔥 Mais de 3.800 pessoas já garantiram acesso
+    </p>
+  </div>
 );
 
 const SectionTitle = ({ children, subtitle, className = '', align = 'center' }: { children: React.ReactNode, subtitle?: string, className?: string, align?: 'center' | 'left' }) => (
@@ -285,7 +291,7 @@ const MainLandingPage = () => {
               animate={{ opacity: 1, x: 0 }}
               className="bg-accent/10 text-accent border border-accent/30 px-6 py-2.5 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.25em] w-fit mb-10 shadow-neon-accent backdrop-blur-sm mx-auto lg:mx-0"
             >
-              🔥 O ATALHO SECRETO DOS PERFIS QUE DOMINAM O ALGORITMO
+              🔥 O JEITO PREGUIÇOSO DE DOMINAR O ALGORITMO
             </motion.div>
 
             <motion.h1 
@@ -293,7 +299,7 @@ const MainLandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl lg:text-9xl font-sans font-black leading-[0.8] tracking-tighter uppercase mb-10"
             >
-              Cresça no Instagram <span className="text-accent text-glow-accent">Sem Gravar Vídeos</span>
+              Cresça no Instagram <span className="text-accent text-glow-accent">sem gravar nada</span>
             </motion.h1>
 
             <motion.p 
@@ -302,7 +308,7 @@ const MainLandingPage = () => {
               transition={{ delay: 0.1 }}
               className="text-lg md:text-2xl text-text-gray max-w-2xl mb-14 font-medium leading-relaxed mx-auto lg:mx-0"
             >
-              Poste vídeos prontos de alta retenção e ganhe seguidores. Comece hoje por apenas R$ 19,90.
+              Poste vídeos prontos, ganhe seguidores e pronto. Sem gravar, sem editar, sem aparecer. Só R$ 19,90.
             </motion.p>
 
             <motion.div
@@ -316,7 +322,7 @@ const MainLandingPage = () => {
               <div className="flex items-center gap-5 bg-white/5 backdrop-blur-md px-8 py-4 rounded-3xl border border-white/10 shadow-2xl">
                 <Clock className="w-7 h-7 text-red-500 animate-pulse" />
                 <div className="text-left">
-                  <div className="text-[10px] font-black uppercase tracking-widest text-text-dim mb-1">Expira Em:</div>
+                  <div className="text-[10px] font-black uppercase tracking-widest text-text-dim mb-1">Acaba em:</div>
                   <div className="text-3xl font-mono font-black text-white leading-none">
                     {String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                   </div>
@@ -362,8 +368,8 @@ const MainLandingPage = () => {
       {/* --- Proof Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Perfis gigantes postam todo dia usando vídeos prontos. Copie o que já funciona e cresça sem esforço.">
-             O SEGREDO DOS <span className="text-cyan text-glow-cyan">PERFIS QUE EXPLODEM</span>
+          <SectionTitle subtitle="Os grandes postam todo dia com vídeo pronto. Copie o que funciona e cresça sem suar.">
+             COMO ESSES CARAS ESTÃO <span className="text-cyan text-glow-cyan">EXPLODINDO</span>
           </SectionTitle>
           
           <Carousel images={[
@@ -379,7 +385,7 @@ const MainLandingPage = () => {
 
           <div className="mt-16 md:mt-24 text-center">
             <p className="text-xl md:text-3xl font-medium text-gray-400 leading-relaxed max-w-4xl mx-auto px-4">
-              Pare de perder tempo editando. <span className="text-accent font-black">Use vídeos testados</span> para dominar o algoritmo hoje mesmo.
+              Para de perder tempo editando, mano. <span className="text-accent font-black">Usa o que já tá testado</span> e domina essa parada hoje mesmo.
             </p>
           </div>
         </div>
@@ -388,22 +394,15 @@ const MainLandingPage = () => {
       {/* --- Niches Section --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/20">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Acesso imediato a milhares de vídeos em HD. Escolha seu nicho, baixe e poste em segundos.">
-            BIBLIOTECA COMPLETA E PRONTA
+          <SectionTitle subtitle="Milhares de vídeos em HD na sua mão. Escolha o nicho, baixe e poste. Simples assim.">
+            TUDO PRONTO PRA VOCÊ
           </SectionTitle>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {[
-              { img: "filmes_e_series.png", title: "FILMES & SÉRIES", count: "900+" },
               { img: "memes.png", title: "MEMES", count: "500+" },
-              { img: "family_guy.png", title: "FAMILY GUY", count: "300+" },
-              { img: "rick_and_morty.png", title: "RICK AND MORTY", count: "300+" },
               { img: "os_simpsons.png", title: "SIMPSONS", count: "400+" },
               { img: "futebol.png", title: "FUTEBOL", count: "450+" },
-              { img: "lifestyles.png", title: "LIFESTYLE", count: "600+" },
-              { img: "academia.png", title: "ACADEMIA", count: "350+" },
-              { img: "acao_policial.png", title: "POLICIAL", count: "200+" },
-              { img: "espinhas.png", title: "ESPINHAS", count: "150+" },
               { img: "todo_mundo_odeia_o_chris.png", title: "CHRIS", count: "250+" },
               { img: "pica_pau.png", title: "PICA PAU", count: "200+" }
             ].map((item, i) => (
@@ -440,12 +439,12 @@ const MainLandingPage = () => {
        {/* --- How it Works --- */}
       <section className="py-24 md:py-40 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionTitle>PASSO A PASSO SIMPLES</SectionTitle>
+          <SectionTitle>É SÓ FAZER ISSO AQUI</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <Users className="w-10 h-10" />, title: "Escolha seu nicho", desc: "Selecione o tema que você quer crescer entre as opções prontas." },
-              { icon: <Play className="w-10 h-10" />, title: "Baixe os vídeos", desc: "Selecione os melhores vídeos da nossa biblioteca HD direto no seu celular." },
-              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste e cresça", desc: "Mantenha a frequência postando em segundos, sem precisar aparecer." }
+              { icon: <Users className="w-10 h-10" />, title: "Escolha o nicho", desc: "Pega o tema que você curte entre as opções que já deixamos prontas." },
+              { icon: <Play className="w-10 h-10" />, title: "Baixe os vídeos", desc: "Puxa os melhores vídeos direto pro seu celular. Tudo em HD." },
+              { icon: <TrendingUp className="w-10 h-10" />, title: "Poste e pronto", desc: "Só postar e ver o perfil crescer. Sem precisar aparecer nem uma vez." }
             ].map((step, i) => (
               <motion.div
                 key={i}
@@ -469,7 +468,7 @@ const MainLandingPage = () => {
       {/* --- Testimonials --- */}
       <section className="py-24 md:py-40 px-4 bg-surface/10">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle>A PROVA VIVA DA LIBERTAÇÃO DA TELA EM BRANCO</SectionTitle>
+          <SectionTitle>QUEM JÁ TÁ USANDO O ATALHO</SectionTitle>
           <Carousel images={[
             "https://packlandia.com/wp-content/uploads/2025/09/10-1.jpg.webp",
             "https://packlandia.com/wp-content/uploads/2025/09/9.jpg.webp",
@@ -486,13 +485,13 @@ const MainLandingPage = () => {
       {/* --- Bonus Section --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle subtitle="Garantindo seu acesso hoje, você recebe gratuitamente este arsenal exclusivo para acelerar seus resultados:">BÔNUS EXCLUSIVOS</SectionTitle>
+          <SectionTitle subtitle="Levando hoje, você ainda ganha esse arsenal pra destravar de vez:">AINDA TEM ESSES PRESENTES</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Pack de Memes", desc: "Mais de 1.000 memes e cortes rápidos para vídeos divertidos.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
-              { title: "Efeitos Sonoros", desc: "Os áudios que os grandes canais usam para prender a atenção.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
-              { title: "Músicas Sem Copyright", desc: "Trilhas sonoras seguras para Instagram e TikTok.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo VIP", desc: "Comunidade exclusiva para trocar dicas e ver o que está bombando." }
+              { title: "Pack de Memes", desc: "Mais de 1.000 memes pra você fazer a galera rir e te seguir.", icon: <Flame className="w-10 h-10 text-orange-500" /> },
+              { title: "Efeitos Sonoros", desc: "Os sons que os grandes usam pra prender a galera no vídeo.", icon: <Zap className="w-10 h-10 text-yellow-400" /> },
+              { title: "Músicas Seguras", desc: "Trilhas que não dão trava nem direitos autorais no Insta ou TikTok.", icon: <Layers className="w-10 h-10 text-blue-400" /> },
+              { icon: <Users className="w-10 h-10 text-accent" />, title: "Grupo VIP", desc: "Cola com a gente pra ver o que tá bombando e trocar uma ideia." }
             ].map((bonus, i) => (
               <motion.div
                 key={i}
@@ -530,14 +529,14 @@ const MainLandingPage = () => {
             </div>
 
             <h2 className="text-4xl md:text-7xl font-sans font-black mb-12 tracking-tighter uppercase leading-[0.9]">
-              ACESSO IMEDIATO <span className="text-accent">POR R$ 19,90</span>
+              PEGA SEU ACESSO <span className="text-accent">POR R$ 19,90</span>
             </h2>
             
             <div className="mb-20">
               <div className="flex flex-col items-center gap-2 mb-8">
-                <span className="text-text-dim/60 line-through text-xl md:text-2xl font-bold uppercase tracking-widest">DE R$ 99,90</span>
+                <span className="text-text-dim/60 line-through text-xl md:text-2xl font-bold uppercase tracking-widest">ERA R$ 99,90</span>
                 <div className="flex flex-col md:flex-row items-center md:items-baseline gap-2">
-                  <span className="text-2xl md:text-3xl font-black text-white/80">HOJE POR APENAS</span>
+                  <span className="text-2xl md:text-3xl font-black text-white/80">SÓ HOJE POR</span>
                   <span className="text-7xl md:text-9xl font-sans font-black text-white leading-none">R$ 19,90</span>
                 </div>
               </div>
@@ -546,12 +545,17 @@ const MainLandingPage = () => {
               </div>
             </div>
 
-            <Button 
-              href={CHECKOUT_LINK} 
-              className="text-2xl md:text-3xl px-16 py-8 md:py-10 w-full rounded-2xl shadow-none animate-none hover:shadow-[0_0_40px_rgba(57,255,20,0.2)] transition-all bg-accent hover:bg-accent/90"
-            >
-              GARANTIR ACESSO AGORA
-            </Button>
+            <div className="flex flex-col items-center gap-4">
+              <Button 
+                href={CHECKOUT_LINK} 
+                className="text-2xl md:text-3xl px-16 py-8 md:py-10 w-full rounded-2xl shadow-none animate-none hover:shadow-[0_0_40px_rgba(57,255,20,0.2)] transition-all bg-accent hover:bg-accent/90"
+              >
+                QUERO ACESSO AGORA
+              </Button>
+              <p className="text-[10px] md:text-xs text-text-gray font-medium uppercase tracking-wider opacity-60">
+                🔥 Mais de 3.800 pessoas já garantiram acesso
+              </p>
+            </div>
 
             <div className="mt-16 pt-12 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
@@ -575,13 +579,13 @@ const MainLandingPage = () => {
       {/* --- FAQ --- */}
       <section className="py-24 md:py-40 px-4">
         <div className="max-w-5xl mx-auto">
-          <SectionTitle>TIRE SUAS ÚLTIMAS DÚVIDAS</SectionTitle>
+          <SectionTitle>DÚVIDAS? RESPONDEMOS AQUI</SectionTitle>
           <div className="space-y-4">
-            <FAQItem question="Preciso aparecer?" answer="Não. O Packlandia é focado em perfis que não precisam mostrar o rosto." />
-            <FAQItem question="Como recebo o acesso?" answer="Imediatamente por e-mail após a confirmação do pagamento." />
-            <FAQItem question="É difícil editar?" answer="Não. Os vídeos já estão cortados e prontos para postar direto do celular." />
-            <FAQItem question="O conteúdo é atualizado?" answer="Sim, adicionamos novos vídeos e tendências constantemente." />
-            <FAQItem question="Funciona em quais redes?" answer="Instagram, TikTok, YouTube Shorts e qualquer plataforma de vídeos curtos." />
+            <FAQItem question="Preciso aparecer?" answer="Claro que não, mano. É pra quem quer crescer sem mostrar o rosto." />
+            <FAQItem question="Como recebo o acesso?" answer="Direto no seu e-mail assim que o pagamento cair. É na hora." />
+            <FAQItem question="É difícil editar?" answer="Nada. Já tá tudo cortado e pronto. É só postar pelo celular mesmo." />
+            <FAQItem question="Tem coisa nova sempre?" answer="Com certeza. A gente tá sempre de olho no que tá bombando e coloca lá." />
+            <FAQItem question="Funciona em qual rede?" answer="Insta, TikTok, Shorts... qualquer lugar que aceite vídeo curto." />
           </div>
         </div>
       </section>
@@ -646,7 +650,7 @@ const SpecialOfferPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="inline-block bg-accent/10 text-accent border border-accent/30 px-6 py-2.5 rounded-full text-xs md:text-sm font-black uppercase tracking-[0.25em] mb-10 shadow-neon-accent backdrop-blur-sm"
           >
-            🔥 UMA ÚLTIMA TENTATIVA DE SEGURAR VOCÊ
+            🔥 ÚLTIMA CHANCE PRA VOCÊ NÃO VACILAR
           </motion.div>
           
           <motion.h1 
@@ -654,7 +658,7 @@ const SpecialOfferPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-8xl font-black leading-[0.85] uppercase tracking-tighter mb-10"
           >
-            ❌ NÃO PERMITA QUE A PARALISIA <span className="text-accent text-glow-accent">ABAFE SUAS METAS</span>
+            ❌ NÃO DEIXA ESSA OPORTUNIDADE PASSAR, <span className="text-accent text-glow-accent">MANO</span>
           </motion.h1>
 
           <motion.p 
@@ -663,7 +667,7 @@ const SpecialOfferPage = () => {
             transition={{ delay: 0.1 }}
             className="text-xl md:text-3xl font-medium text-text-dim mb-6 leading-relaxed"
           >
-            Nós sabemos o quão frustrante é tentar algo novo e logo recuar pelo medo de gastar tempo sem obter o retorno desejado.
+            A gente sabe que dá um frio na barriga começar algo novo e ter medo de perder tempo e grana.
           </motion.p>
           
           <motion.p 
@@ -672,7 +676,7 @@ const SpecialOfferPage = () => {
             transition={{ delay: 0.2 }}
             className="text-lg md:text-2xl text-text-gray max-w-3xl mx-auto leading-relaxed font-medium"
           >
-            Por essa razão concreta, removemos o absoluto último degrau que impedia sua consistência e impulsionava sua hesitação.
+            Por isso, tiramos qualquer desculpa que você tinha pra não começar agora.
           </motion.p>
         </div>
       </section>
@@ -686,10 +690,10 @@ const SpecialOfferPage = () => {
             className="bg-surface/30 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-white/5"
           >
             <p className="text-lg md:text-2xl text-text-dim leading-relaxed mb-8">
-              Se o seu entrave era a barreira do investimento, esta é a sua <span className="text-accent font-black">chance final do destino</span>. O exato arsenal premium, os mesmos multiplicadores e ferramentas secretas, reduzidos a um valor irrisório que nunca mais se repetirá.
+              Se o problema era grana, essa é a sua <span className="text-accent font-black">última chance</span>. O mesmo conteúdo premium por um preço de banana que não volta mais.
             </p>
             <p className="text-red-500 font-bold uppercase tracking-widest animate-pulse">
-              É pegar ou recuar para sempre. Escolha agora ou viva com a eterna dúvida sobre onde seu perfil poderia ter chegado.
+              É agora ou nunca, cara. Ou você aproveita ou vai ficar na dúvida de onde poderia ter chegado.
             </p>
           </motion.div>
         </div>
@@ -709,7 +713,7 @@ const SpecialOfferPage = () => {
 
             <div className="mb-12">
               <span className="text-3xl md:text-5xl font-black text-cyan text-glow-cyan leading-none block mb-4 uppercase">
-                Metade da barreira original
+                Metade do preço original
               </span>
             </div>
 
@@ -729,7 +733,7 @@ const SpecialOfferPage = () => {
             </div>
 
             <Button href={checkoutLink} className="text-2xl md:text-4xl px-12 py-8 w-full shadow-[0_0_60px_rgba(57,255,20,0.4)]">
-              🚀 SIM! QUERO MINHA ÚLTIMA CHANCE
+              🚀 VOU APROVEITAR MINHA ÚLTIMA CHANCE
             </Button>
 
             <div className="mt-12 flex flex-col items-center gap-4 bg-black/40 p-6 rounded-3xl border border-white/5">
@@ -770,14 +774,14 @@ const ThankYouPage = () => {
     <div className="min-h-screen bg-bg flex items-center justify-center px-4 font-sans text-center">
       <div className="max-w-2xl bg-surface/40 backdrop-blur-xl p-10 md:p-16 rounded-[40px] border border-white/10 shadow-2xl">
         <CheckCircle2 className="w-20 h-20 text-accent mx-auto mb-8 animate-pulse" />
-        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Acesso Confirmado!</h1>
+        <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">Tudo certo, mano!</h1>
         <p className="text-xl text-text-dim mb-10 leading-relaxed">
-          Obrigado pela sua compra! Os detalhes do seu acesso foram enviados para o seu e-mail agora mesmo.
+          Valeu pela confiança! O acesso já tá voando pro seu e-mail agora mesmo.
         </p>
         <div className="bg-accent/10 border border-accent/20 p-6 rounded-2xl mb-10">
-          <p className="text-accent font-bold uppercase tracking-widest text-sm">Verifique sua caixa de entrada e a pasta de spam.</p>
+          <p className="text-accent font-bold uppercase tracking-widest text-sm">Dá uma olhada no e-mail e confere o spam se não chegar.</p>
         </div>
-        <Button onClick={() => window.location.href = "/"} className="text-xl">Voltar para a Início</Button>
+        <Button onClick={() => window.location.href = "/"} className="text-xl">Voltar pro Início</Button>
       </div>
     </div>
   );
